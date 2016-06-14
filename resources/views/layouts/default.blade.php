@@ -21,6 +21,7 @@
     </script>
 </head>
 <body>
+
 {{--header--}}
 @include('layouts.header',[])
 

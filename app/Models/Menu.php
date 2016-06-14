@@ -20,4 +20,23 @@ class Menu extends Model
 //     * @var bool
 //     */
 //    public $timestamps = false;
+
+    public function getMenuTree()
+    {
+
+
+    }
+
+    /**
+     * 递归获取子节点
+     * @param $parent
+     * @param $target
+     * @return bool
+     */
+    public function getRecursionChildrenFromParent($parent,&$target)
+    {
+        
+    }
+
+
 }

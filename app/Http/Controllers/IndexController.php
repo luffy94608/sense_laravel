@@ -19,7 +19,11 @@ class IndexController extends Controller
      */
     public function getIndex()
     {
-        return View::make('index.index');
+        
+        $params = [
+
+        ];
+        return View::make('index.index',$params);
     }
 
 
