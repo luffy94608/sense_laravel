@@ -1,0 +1,179 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ */
+@import "variables";
+@import "icons";
+
+.clear-fix:after{
+  clear:both;
+  content:".";
+  display:block;
+  height:0;
+  visibility:hidden;
+}
+.fl{
+  float: left!important;
+}
+.fr{
+  float: right!important;
+}
+
+//font size
+.font-size-14{
+  font-size: 1.4rem!important;
+}
+.font-size-16{
+  font-size: 1.6rem!important;
+}
+.font-size-18{
+  font-size: 1.8rem!important;
+}
+.font-size-20{
+  font-size: 2rem!important;
+}
+.font-size-24{
+  font-size: 2.4rem!important;
+}
+.font-size-30{
+  font-size: 3rem!important;
+}
+//width
+.width-p-50{
+  width: 50%!important;
+}
+.width-p-100{
+  width: 100%!important;
+}
+.min-height-400{
+  min-height: 400px;
+}
+
+//text
+.pre-line{
+  white-space: pre-line!important;
+}
+.bolder{
+  font-weight: bolder;
+}
+.line-height-30{
+  line-height: 3rem;
+}
+
+.text-left{
+  text-align: left;
+}
+.text-center{
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}
+.text-ellipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.text-decoration-none{
+  text-decoration: none;
+  &:hover{
+    text-decoration: none;
+  }
+}
+.gone{
+  display: none;
+}
+
+//position
+.fixed{
+  position: fixed!important;
+}
+.relative{
+  position: relative!important;
+}
+
+//color
+.color-orange{
+  color: $text-6!important;
+}
+.color-blue{
+  color: $text-9!important;
+}
+.color-black-0{
+  color: $text-1!important;
+}
+.color-black-2{
+  color: $text-2!important;
+}
+.color-black-3{
+  color: $text-3!important;
+}
+.color-black-4{
+  color: $text-4!important;
+}
+.color-red{
+  color: $text-10!important;
+}
+
+.bg-white{
+  background-color: $text-5;
+}
+
+//border
+.border-top-grey{
+  border-top: 1px solid $border-color;
+}
+.border-right-grey{
+  border-right: 1px solid $border-color;
+}
+.border-bottom-grey{
+  border-bottom: 1px solid $border-color;
+}
+.border-left-grey{
+  border-left: 1px solid $border-color;
+}
+.border-bottom-blue{
+  border-bottom: 1px solid $text-9;
+}
+//margin
+.margin-t-10{
+  margin-top: 10px!important;
+}
+.margin-t-20{
+  margin-top: 20px!important;
+}
+.margin-t-50{
+  margin-top: 50px!important;
+}
+.margin-t-100{
+  margin-top: 100px!important;
+}
+.margin-l-10{
+  margin-left: 10px!important;
+}
+.margin-l-20{
+  margin-left: 20px!important;
+}
+
+//居中
+@mixin center($width: null, $height: null) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  @if not $width and not $height {
+    transform: translate(-50%, -50%);
+  } @else if $width and $height {
+    width: $width;
+    height: $height;
+    margin: -($width / 2) #{0 0} -($height / 2);
+  } @else if not $height {
+    width: $width;
+    margin-left: -($width / 2);
+    transform: translateY(-50%);
+  } @else {
+    height: $height;
+    margin-top: -($height / 2);
+    transform: translateX(-50%);
+  }
+}

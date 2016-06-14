@@ -1,0 +1,309 @@
+//lock detail
+.sn-lock-detail{
+  .sn-nav-tabs{
+    @extend .clear-fix;
+    display: block;
+    &>li,&>li>a{
+      display: inline-block;
+      float: left;
+      font-size: 1.8rem;
+      color: $text-9;
+      padding: 5px 10px;
+      @include transition(all ease .2s);
+    }
+    &>li{
+      &:hover,&.active{
+        &,&>a{
+           color: $text-5;
+           background-color: $text-9;
+         }
+      }
+    }
+  }
+  .sn-tab-content{
+    .sn-tab-pane{
+      padding-top: 40px;
+      display: none;
+      &.active{
+        display: block;
+      }
+    }
+  }
+  .sn-ld-section-title{
+    color: $text-2;
+    font-size: 2rem;
+    font-weight: bolder;
+  }
+  .sn-ld-title{
+    color: $text-2;
+    font-size: 2rem;
+    padding: 20px 0;
+  }
+  .sn-ld-desc{
+    color: $text-3;
+    font-size: 1.6rem;
+    line-height: 2;
+  }
+  .sn-ld-feature{
+    margin: 20px 0;
+    color: $text-3;
+    font-size: 1.4rem;
+    line-height: 2.4;
+  }
+  .sn-ld-btn-list{
+    margin-top: 30px;
+    &>.sn-ld-btn{
+      margin-right: 20px;
+      outline: none;
+    }
+    &.center{
+      margin: 0 auto;
+    }
+  }
+  .sn-ld-btn{
+    display: inline-block;
+    font-size: 2rem;
+    color: $text-5;
+    -webkit-appearance: none;
+    border: none;
+    width: 250px;
+    height: 45px;
+    line-height: 45px;
+    background-color: $text-9;
+    cursor: pointer;
+    &:hover{
+      background-color: $text-8;
+    }
+    &.download:before{
+       content: '';
+       display: inline-block;
+       width: 44px;
+       height: 38px;
+       margin-right: 10px;
+       vertical-align: middle;
+       background: url("../images/download_w.png") no-repeat center;
+       @include background-size(80%);
+    }
+  }
+
+  .sn-ld-pic{
+    width: 400px;
+    .dn-ldp-preview{
+      width: 100%;
+    }
+    .dn-ldp-list{
+      &>img{
+        width: 32%;
+      }
+    }
+    border-right: 1px solid $border-color;
+  }
+  .sn-ld-detail{
+    width: 600px;
+    .sn-ld-version{
+      width: 100%;
+      &,td{
+        border: 1px solid $border-color;
+      }
+      td,th{
+        height: 35px;
+        line-height: 35px;
+        color: $text-3;
+        font-size: 1.4rem;
+        text-align: center;
+      }
+      tr{
+        &:first-child{
+          background-color: $bg-color-2;
+        }
+      }
+    }
+    .sn-ld-version-c{
+      width: 100%;
+      margin: 20px  0  10px;
+      &,td{
+        border: 1px solid $border-color;
+      }
+      td{
+        width: 50%;
+        color: $text-3;
+        font-size: 1.4rem;
+        text-align: center;
+        padding: 10px;
+      }
+      tr{
+        &:first-child>td{
+          padding: 0;
+        }
+      }
+    }
+    .sn-ld-vc-title{
+      width: 100%;
+      &>div{
+        width: 50%;
+        color: $text-3;
+        display: inline-block;
+        font-size: 1.4rem;
+        text-align: center;
+        float: left;
+      }
+    }
+  }
+  .sn-ld-params{
+    width: 100%;
+    margin: 10px 0 20px;
+    tr:nth-of-type(odd){
+      background-color: $bg-color-5;
+    }
+    td{
+      color: $text-3;
+      font-size: 1.4rem;
+      height: 35px;
+      line-height: 35px;
+    }
+  }
+  .sn-ld-table-params{
+    width: 100%;
+    margin: 10px 0 20px;
+    th,td{
+      color: $text-3;
+      font-size: 1.4rem;
+      height: 35px;
+      line-height: 35px;
+      text-align: left;
+      text-indent: 2em;
+      border: 1px solid $border-color;
+      &.center{
+        text-align: center;
+        text-indent: 0;
+      }
+    }
+  }
+  .sn-input-inline{
+    display: inline-block;
+    margin-right: 40px;
+  }
+  .sn-input-group{
+    display: table;
+    border: 1px solid $border-color;
+    width: 450px;
+    padding: 10px 0 10px 10px;
+    margin: 10px 0;
+    overflow: hidden;
+    @include box-sizing(border-box);
+    label,input{
+      display: table-cell;
+      color: $text-3;
+      font-size: 1.4rem;
+      outline: none;
+      border: none;
+    }
+    &>label{
+      width: 50px;
+      &.width-80{
+        width: 80px;
+      }
+    }
+    &>input{
+      width: 100%;
+    }
+  }
+  .sn-ld-textarea{
+    width: 100%;
+    resize: none;
+    padding: 15px;
+    margin: 20px 0;
+    font-size: 1.4rem;
+    color: $text-3;
+    line-height: 1.6;
+    outline: none;
+    border: 1px solid $border-color;
+  }
+}
+
+//试用及购买
+.sn-try-buy{
+  margin: 0 40px 40px;
+  padding: 40px;
+  @include box-shadow(0 0 12px 4px $border-color);
+  input[type=text] {
+    outline: none;
+    color: $text-3;
+    font-size: 1.4rem;
+    border: $border-style;
+  }
+  color: $text-3;
+  font-size: 2rem;
+  .sn-tb-form{
+    &>div{
+      float: left;
+    }
+  }
+  .require{
+    width: 10px;
+    color: $text-10;
+    position: relative;
+    top: 4px;
+    display: inline-block;
+  }
+  .sn-tb-item{
+    width: 400px;
+    height: 50px;
+    &.full{
+      width: 800px;
+    }
+    line-height: 50px;
+    &>label{
+    }
+    input{
+      width: 250px;
+      padding: 7px 10px;
+    }
+  }
+  .sn-tb-type{
+    height: 30px;
+    outline: none;
+    width: 150px;
+    border: 1px solid $border-color;
+  }
+  .sn-tb-block-item{
+    margin: 20px 0;
+    .sn-tbb-radio{
+      float: left;
+      width: 180px;
+      height: 40px;
+      line-height: 40px;
+      margin-right: 20px;
+      &>label{
+        vertical-align: middle;
+      }
+    }
+    &>textarea{
+      resize: none;
+      width: 90%;
+      outline: none;
+      height: 150px;
+      font-size: 1.4rem;
+      margin-top: 10px;
+      padding: 10px;
+      line-height: 2;
+      border: $border-style;
+    }
+  }
+  .hint{
+    font-size: 1.4rem;
+  }
+  .sn-tb-submit{
+    width: 150px;
+    outline: none;
+    height: 35px;
+    line-height: 35px;
+    color: $text-5;
+    border: none;
+    cursor: pointer;
+    font-size: 1.8rem;
+    background-color: $text-9;
+    @include box-shadow(4px 4px 2px -1px $border-color);
+  }
+}
+
