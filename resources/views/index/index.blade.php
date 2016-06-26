@@ -1,50 +1,50 @@
 @extends('layouts.default')
 {{--@section('title', '')--}}
 @section('content')
-<!--轮播图-->
-<div class="swiper-container swiper-slide-container ">
-    <div class="swiper-wrapper">
-        <div class="swiper-slide ">
+        <!--轮播图-->
+<div class="sn-slide-section">
+    <ul class="sn_bxslider">
+        <li>
             <div class="sn-swiper-item">
-                <div class="sn-si-title">
+                <div class="wrap text-left">
                     <p>深思安全授权平台</p>
-                    <p>助您轻松转变商业模式变客户为用户。</p>
-                    <a href="javascript:void(0);" class="reg-btn js_location_url" data-url="register">免费注册</a>
+                    <p>顶级安全技术全自动加密引擎远离盗版</p>
+                    <a href="http://developer.senseshield.com/auth/register.jsp" class="reg-btn " >免费注册</a>
                 </div>
-                <img src="images/slides/1.jpg">
             </div>
-        </div>
-        <div class="swiper-slide  ">
+            <img src="images/slides/1.png">
+        </li>
+        <li>
             <div class="sn-swiper-item">
-                <div class="sn-si-title">
+                <div class="wrap text-left">
                     <p>深思安全授权平台</p>
-                    <p>即时授权，提升用户体验，软件保护“零成本”。</p>
+                    <p>即时授权 提升用户体验<br/> 软件保护“零成本”</p>
+                    <a href="http://developer.senseshield.com/auth/register.jsp" class="reg-btn " >免费注册</a>
                 </div>
-                <img src="images/slides/2.jpg">
             </div>
-        </div>
-        <div class="swiper-slide  ">
+            <img src="images/slides/2.png">
+        </li>
+        <li class="">
             <div class="sn-swiper-item">
-                <div class="sn-si-title">
+                <div class="wrap text-left">
                     <p>深思安全授权平台</p>
-                    <p>精准掌握所有软件授权的使用情况。</p>
+                    <p>精准掌握所有软件授权使用情况 </p>
+                    <a href="http://developer.senseshield.com/auth/register.jsp" class="reg-btn" >免费注册</a>
                 </div>
-                <img src="images/slides/3.jpg">
             </div>
-        </div>
-        <div class="swiper-slide">
+            <img src="images/slides/3.png">
+        </li>
+        <li class="">
             <div class="sn-swiper-item">
-                <div class="sn-si-title">
+                <div class="wrap text-left">
                     <p>深思安全授权平台</p>
-                    <p>顶级安全技术，全自动加密引擎，远离盗版。</p>
+                    <p>顶级安全技术全自动加密引擎 远离盗版</p>
+                    <a href="http://developer.senseshield.com/auth/register.jsp" class="reg-btn " >免费注册</a>
                 </div>
-                <img src="images/slides/4.jpg">
             </div>
-        </div>
-    </div>
-    <div class="swiper-pagination"></div>
-    <div class="swiper-button-prev sn-pre-btn"></div>
-    <div class="swiper-button-next sn-next-btn"></div>
+            <img src="images/slides/4.png">
+        </li>
+    </ul>
 </div>
 
 <!--container-->
@@ -97,7 +97,7 @@
             </div>
         </div>
         <div class="snphc-img fr">
-            <img class="snphc-img" src="images/home/img_1.jpg">
+            <img class="snphc-img" src="images/home/img_1.png">
         </div>
     </div>
 </section>
@@ -119,7 +119,7 @@
             </div>
         </div>
         <div class="snphc-img fr">
-            <img class="snphc-img" src="images/home/img_2.jpg">
+            <img class="snphc-img" src="images/home/img_2.png">
         </div>
     </div>
 </section>
@@ -164,7 +164,7 @@
             </div>
         </div>
         <div class="snphc-img fr">
-            <img class="snphc-img" src="images/home/img_4.jpg">
+            <img class="snphc-img" src="images/home/img_4.png">
         </div>
     </div>
 </section>
@@ -175,46 +175,41 @@
 <section class="sn-partners">
     <div class="wrap clear-fix">
         <p class="sm-p-title">我们的合作伙伴</p>
+        <div class="sn-partners-slide">
+            <ul class="sn_partners_slide">
+                <li class=" ">
+                    <div class="sn-partners-item">
+                        <a href="http://www.kingdee.gs.cn" target="_blank"><img src="images/partners/1.png"></a>
+                    </div>
+                </li>
+                <li class="  ">
+                    <div class="sn-partners-item">
+                        <a href="http://www.yonyou.com" target="_blank"><img src="images/partners/2.png"></a>
+                    </div>
+                </li>
+                <li class="  ">
+                    <div class="sn-partners-item">
+                        <a href="http://www.siemens.com/entry/cn/zh/" target="_blank"><img src="images/partners/3.png"></a>
+                    </div>
+                </li>
+                <li class="">
+                    <div class="sn-partners-item">
+                        <a href="http://www.sony.com.cn" target="_blank"><img src="images/partners/4.png"></a>
+                    </div>
+                </li>
+                <li class="">
+                    <div class="sn-partners-item">
+                        <a href="http://www.chanjet.com" target="_blank"><img src="images/partners/5.png"></a>
+                    </div>
+                </li>
+                <li class="">
+                    <div class="sn-partners-item">
+                        <a href="http://www.founder.com.cn/zh-cn/" target="_blank"><img src="images/partners/6.png"></a>
+                    </div>
+                </li>
 
-        <div class="swiper-container sn-partners-slide">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide ">
-                    <div class="sn-swiper-item-2">
-                        <a href="http://www.kingdee.gs.cn"><img src="images/partners/1.png"></a>
-                    </div>
-                </div>
-                <div class="swiper-slide  ">
-                    <div class="sn-swiper-item-2">
-                        <a href="http://www.yonyou.com"><img src="images/partners/2.png"></a>
-                    </div>
-                </div>
-                <div class="swiper-slide  ">
-                    <div class="sn-swiper-item-2">
-                        <a href="http://www.siemens.com/entry/cn/zh/"><img src="images/partners/3.png"></a>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="sn-swiper-item-2">
-                        <a href="http://www.sony.com.cn"><img src="images/partners/4.png"></a>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="sn-swiper-item-2">
-                        <a href="http://www.chanjet.com"><img src="images/partners/5.png"></a>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="sn-swiper-item-2">
-                        <a href="http://www.founder.com.cn/zh-cn/"><img src="images/partners/6.png"></a>
-                    </div>
-                </div>
-
-            </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-prev swiper-button-black"></div>
-            <div class="swiper-button-next swiper-button-black"></div>
+            </ul>
         </div>
-
     </div>
 </section>
 

@@ -9,20 +9,21 @@
         waitSeconds: 0,
         paths: {
             //core js
-            'jquery': '/bower_components/jquery/dist/jquery.min',
+            'jquery': '/libs/jquery.min',
             'zepto': '/bower_components/zepto/zepto.min',
-            'swiper': '/bower_components/swiper/dist/js/swiper.min',
-            'move': '/bower_components/movejs/move.min',
+            'bxslider-4': '/bower_components/bxslider-4/dist/jquery.bxslider.min',
             'widget': 'widget/widget',
             'string': 'widget/string',
             'base': 'page/base',
+            'index': 'page/page.index',
         },
         // Use shim for plugins that does not support ADM
         shim: {
             'string': ['jquery'],
             'widget': ['jquery','string'],
-            'swiper': ['jquery'],
-            'base': ['widget','swiper'],
+            'bxslider-4': ['jquery'],
+            'base': ['jquery'],
+            'index': ['base','bxslider-4'],
         }
 
     });

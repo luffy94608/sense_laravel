@@ -1,42 +1,40 @@
-/* Welcome to Compass.
- * In this file you should write your main styles. (or centralize your imports)
- * Import this file using the following HTML or equivalent:
- */
 @import "variables";
-@import "icons";
-
-.clear-fix:after{
-  clear:both;
-  content:".";
-  display:block;
-  height:0;
-  visibility:hidden;
+.clear-fix{
+  *zoom:1;
+  &:after{
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: "";
+    clear: both;
+    height: 0;
+  }
 }
+
 .fl{
   float: left!important;
 }
 .fr{
   float: right!important;
 }
-
 //font size
 .font-size-14{
-  font-size: 1.4rem!important;
+  font-size: 14px!important;
 }
 .font-size-16{
-  font-size: 1.6rem!important;
+  font-size: 16px!important;
 }
 .font-size-18{
-  font-size: 1.8rem!important;
+  font-size: 18px!important;
 }
 .font-size-20{
-  font-size: 2rem!important;
+  font-size: 20px!important;
 }
 .font-size-24{
-  font-size: 2.4rem!important;
+  font-size: 24px!important;
 }
 .font-size-30{
-  font-size: 3rem!important;
+  font-size: 30px!important;
 }
 //width
 .width-p-50{
@@ -48,6 +46,13 @@
 .min-height-400{
   min-height: 400px;
 }
+.height-45{
+  height: 45px!important;
+}
+
+.position-fixed{
+  position: fixed!important;
+}
 
 //text
 .pre-line{
@@ -57,7 +62,7 @@
   font-weight: bolder;
 }
 .line-height-30{
-  line-height: 3rem;
+  line-height: 30px;
 }
 
 .text-left{
@@ -91,15 +96,18 @@
 .relative{
   position: relative!important;
 }
+.block{
+  display: block!important;
+}
 
 //color
 .color-orange{
   color: $text-6!important;
 }
 .color-blue{
-  color: $text-9!important;
+  color: $text-8!important;
 }
-.color-black-0{
+.color-black-1{
   color: $text-1!important;
 }
 .color-black-2{
@@ -119,7 +127,6 @@
   background-color: $text-5;
 }
 
-//border
 .border-top-grey{
   border-top: 1px solid $border-color;
 }
@@ -155,7 +162,6 @@
   margin-left: 20px!important;
 }
 
-//居中
 @mixin center($width: null, $height: null) {
   position: absolute;
   top: 50%;

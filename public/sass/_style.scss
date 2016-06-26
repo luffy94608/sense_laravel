@@ -1,11 +1,10 @@
 html{
-  font-family: Open Sans,Helvetica,Arial,sans-serif;
-  font-size:  62.5%;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
+  font-family: Arial,sans-serif;
+  //font-family: 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,'Hiragino Sans GB',sans-serif;;
+  //font-size:  62.5%;
 }
 body {
-  font-size: 1.4rem;
+  font-size: 14px;
   line-height: 1.6;
   color: $text-1;
   background-color: $text-5;
@@ -17,9 +16,7 @@ a{
     text-decoration: none;
   }
 }
-.container{
 
-}
 .wrap{
   width: 1024px;
   margin: 0 auto;
@@ -28,26 +25,40 @@ a{
 //header
 .sn-header{
   position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   $height : 75px;
   height: $height;
-  @include opacity(0.9);
-  z-index: 5;
+  //@include opacity(0.9);
+  z-index: 10;
+  .logo_a{
+    display: block;
+    float: left;
+    height: 70px;
+  }
   .logo{
     padding-top: 9px;
     img{
+      float: left;
       display: inline-block;
     }
     &>img{
       height: 45px;
+      float: left;
       position: relative;
       top: 5px;
     }
     .logo-txt{
-      display: inline-block;
+      display: block;
+      position: relative;
+      float: left;
+      top: 10px;
        img{
          position: relative;
          left: 0;
+         float: left;
          width: 34px;
          height: 34px;
          @for $i from 1 through 4 {
@@ -69,20 +80,20 @@ a{
     margin-left: 30px;
     &>div{
       position: relative;
-      display: inline-block;
+      display: block;
       float: left;
       width: 115px;
       height: $height;
       line-height: $height;
       color: $text-1;
-      font-size: 1.6rem;
+      font-size: 16px;
       text-align: center;
-      z-index: 1;
+      z-index: 10;
       &.bg-slide{
         position: absolute;
         top: 0;
         left: -115px;
-        z-index: 0;
+        z-index: 5;
         background-color: $bg-color-2;
       }
       a{
@@ -95,12 +106,14 @@ a{
       .sub-menu{
         position: absolute;
         background-color: $text-5;
+        @extend .clear-fix;
         top: $height;
-        z-index: -1;
+        left : 0;
+        z-index: 0;
         display: none;
         .icon-angle-right{
           position: absolute;
-          font-size: 2.4rem;
+          font-size: 24px;
           top: 11px;
           right: 10px;
         }
@@ -127,6 +140,8 @@ a{
         }
         li{
           position: relative;
+          height: 50px;
+          line-height: 50px;
           &:after{
             content: '';
             display: block;
@@ -143,7 +158,7 @@ a{
             border-bottom: none;
           }
           a{
-            font-size: 1.4rem;
+            font-size: 14px;
             margin: 0 auto;
             width: 115px;
             height: 50px;
@@ -161,10 +176,10 @@ a{
       .sub-menu-group{
         padding-top: 10px;
         position: absolute;
+        @extend .clear-fix;
         left: 0px;
         top: $height;
         text-align: left;
-        //width: 543px;
         width: 565px;
         background-color: $text-5;
         @include transition(all ease 0.3s);
@@ -174,17 +189,17 @@ a{
         }
         .sub-mg-title{
           color: $text-3;
-          font-size: 1.6rem;
+          font-size: 16px;
           padding-left: 20px;
           line-height: 50px;
           margin-bottom: 10px;
         }
         .sub-menu-item{
-          //width: 270px;
+          @extend .clear-fix;
           color: $text-3;
           line-height: 1.5;
           float: left;
-          display: inline-block;
+          display: block;
           &:after{
             content: '';
             display: block;
@@ -201,17 +216,17 @@ a{
             line-height: 50px;
             text-align: center;
             a,.sub-mi-desc{
-              font-size: 1.4rem;
+              font-size: 14px;
               color: $text-3;
               display: block;
             }
             a{
               font-weight: bolder;
-              font-size: 1.5rem;
-              color: $text-6;
+              font-size: 15px;
+              color: $text-8;
             }
             .sub-mi-title{
-              font-size: 1.6rem;
+              font-size: 14px;
               color: $text-3;
               font-weight: normal;
               margin-bottom: 5px;
@@ -223,6 +238,12 @@ a{
                 color: $text-5;
               }
             }
+            &.disabled{
+              background-color: $text-5;
+              a,div{
+                color: $text-3;
+              }
+            }
           }
         }
       }
@@ -232,12 +253,12 @@ a{
     height: $height;
     line-height: $height;
   }
-  .login{
-    color: $text-9;
-    font-size: 1.3rem;
-    border: 1px solid $text-9;
-    @include border-radius(2px);
-    padding: 5px;
+  .sn-login{
+    color: $text-5;
+    font-size: 14px;
+    background-color: $text-8;
+    @include border-radius(1px);
+    padding: 6px 14px;
   }
 }
 
@@ -247,7 +268,7 @@ a{
   .sm-p-title{
     padding: 10px 0;
     color: $text-2;
-    font-size: 2rem;
+    font-size: 20px;
     font-weight: bolder;
   }
   .sm-p-list{
@@ -281,14 +302,14 @@ a{
       padding: 4px 18px;
       &.title{
         color: $text-3;
-        font-size: 1.4rem;
+        font-size: 14px;
         font-weight: bolder;
       }
       a{
         position: relative;
         left: 0;
         color: $text-3;
-        font-size: 1.4rem;
+        font-size: 14px;
         display: block;
         &>img{
           width: 18px;
@@ -302,19 +323,6 @@ a{
   }
 }
 
-
-//footer
-.sn-footer{
-  background-color: $text-1;
-  color: $text-5;
-  font-size: 1.2rem;
-  padding: 10px 0;
-  p{
-    height: 25px;
-    line-height: 25px;
-  }
-}
-
 //浮层menu
 .sn-fix-menu{
   width: 64px;
@@ -323,9 +331,14 @@ a{
   position: fixed;
   bottom: 100px;
   right: 0;
+  text-align: center;
   z-index: 10;
   .mask{
     position: absolute;
+    top: 0 ;
+    *top: -8px;
+    left: 0;
+    right: 0;
     width: 64px;
     height: 256px;
     @include opacity(0.5);
@@ -333,10 +346,10 @@ a{
     z-index: -1;
   }
   &>a{
-    margin: 8px 5px ;
     width: 54px;
     height: 54px;
     display: block;
+    margin: 8px auto;
     &.qq{
       width: 54px;
       height: 54px;
@@ -383,27 +396,31 @@ a{
 // 当前位置
 .sn-page-bar{
   position: relative;
-  height: 110px;
+  height: 60px;
+  margin-top: 15px;
+
   .cloud{
-    height: 210px;
+    height: 110px;
     width: 100%;
     position: absolute;
+    left: 0;
+    right: 0;
     top: -100px;
     z-index: 1;
-    background: url("../images/cloud.png") repeat-x center;
+    background: url("../images/cloud_down.png") repeat-x center;
   }
   .sn-pb-content{
     position: relative;
     z-index: 3;
     span{
-      font-size: 1.4rem;
+      font-size: 14px;
       color: $text-4;
       margin-left: 6px;
       &.active{
         color: $text-9;
       }
       &>a{
-        font-size: 1.4rem;
+        font-size: 14px;
         color: $text-4;
         @include transition(all ease .6s);
         &:hover{
@@ -416,17 +433,24 @@ a{
 
 //公共大标题
 .sn-big-title{
-  font-size: 4rem;
-  color: $text-9;
+  font-size: 40px;
+  color: $text-8;
   font-weight: bolder;
 }
 .sn-sub-title{
-  font-size: 1.4rem;
-  color: $text-3;
+  font-size: 16px;
+  color: $text-2;
   line-height: 2;
 }
-//渐变背景
-.sn-blue-bg{
-  height: 400px;
-  @include background(linear-gradient('top',$text-9,$text-5));
+
+//footer
+.sn-footer{
+  background-color: $text-1;
+  color: $text-5;
+  font-size: 12px;
+  padding: 10px 0;
+  p{
+    height: 25px;
+    line-height: 25px;
+  }
 }

@@ -1,29 +1,60 @@
-
 //轮播图
-.sn-swiper-item{
-  background-color: $bg-color-4;
-  .sn-si-title{
+.sn-slide-section{
+  width: 100%;
+  text-align: center;
+  .bx-wrapper{
+    margin: 0 auto;
+    border: 0!important;
+    .bx-viewport{
+      li{
+        left: 0;
+        right:  0;
+      }
+    }
+    .bx-pager,.bx-controls-auto{
+      left: 0;
+      right: 0;
+      bottom: 10px;
+    }
+    .bx-controls-direction a{
+      &,&:hover{
+        width: 70px;
+        height: 70px;
+        margin-top: -35px;
+        background-position: center;
+      }
+    }
+    .bx-prev{
+      background: url(../images/pre_btn.png) no-repeat center;
+    }
+    .bx-next{
+      background: url(../images/next_btn.png) no-repeat center;
+    }
+  }
+  .bx-page{
+    bottom: 0!important;
+  }
+  .sn-swiper-item{
     position: absolute;
     top: 50%;
-    width: 1024px;
+    margin-top: -93px;
     left: 0;
     right: 0;
-    text-align: left;
-    font-size: 2rem;
+    text-align: center;
+    font-size: 20px;
     color: $text-5;
-    margin: 0 auto;
-    @include transform(translateY(-50%));
-    &>p{
+    width: 100%;
+    p{
       width: 270px;
       &:first-child{
-        font-size: 3rem;
+        font-size: 30px;
         font-weight: bolder;
         margin-bottom: 10px;
       }
     }
     .reg-btn{
       display: inline-block;
-      font-size: 2rem;
+      font-size: 20px;
       @include border-radius(2px);
       padding: 5px 30px;
       margin-top: 20px;
@@ -31,31 +62,60 @@
       border: 1px solid $text-5;
     }
   }
-  &>img{
-    width: 100%;
-  }
-}
-.sn-partners-slide{
-  margin: 40px auto!important;
-  //padding: 0 50px;
-  .sn-swiper-item-2{
-    img{
-      height: 60px;
-    }
-  }
 }
 
-.swiper-button-prev.sn-pre-btn,
-.swiper-button-next.sn-next-btn
-{
-  width: 70px;
-  height: 70px;
-  @include background-size(70px 70px);
-  &.sn-pre-btn{
-    background: url("../images/pre_btn.png") no-repeat center;
+.sn-partners{
+  .sm-p-title{
+    margin: 10px 0 50px;
+    color: #333;
+    font-size: 24px;
+    font-weight: bolder;
   }
-  &.sn-next-btn{
-    background: url("../images/next_btn.png") no-repeat center;
+  .sn-partners-slide{
+    //margin: 40px auto!important;
+    padding: 0 50px;
+    position: relative;
+    .bx-wrapper{
+      border: 0!important;
+      margin: 0 auto;
+      box-shadow: none;
+      .bx-viewport{
+        border: 0!important;
+        li{
+          left: 0;
+          right:  0;
+        }
+      }
+      .bx-pager,.bx-controls-auto{
+        left: 0;
+        right: 0;
+        bottom: 10px;
+      }
+      .bx-controls-direction a{
+        &,&:hover{
+          width: 70px;
+          height: 70px;
+          margin-top: -35px;
+          background-position: center;
+        }
+      }
+      .bx-prev{
+        left: -70px;
+        background: url(../images/pre_btn.png) no-repeat center;
+      }
+      .bx-next{
+        right: -70px;
+        background: url(../images/next_btn.png) no-repeat center;
+      }
+    }
+    .sn-partners-item{
+      display: block;
+      text-align: center;
+      img{
+        height: 70px;
+        margin: 0 auto;
+      }
+    }
   }
 }
 
@@ -68,20 +128,27 @@
   background-color: $bg-color-4;
   .sn-phcm-title{
     color: $text-8;
-    font-size: 2.4rem;
+    font-size: 24px;
   }
   .sn-phcm-list{
     margin-top: 50px;
     width: 100%;
-    display: table;
     li{
-      display: table-cell;
+      display: block;
       width: 25%;
+      float: left;
       a{
+        display: block;
         color: $text-1;
+        p{
+          color: $text-1;
+          font-weight: bolder;
+          font-size: 20px;
+          line-height: 3;
+        }
       }
       img{
-        width: 96px;
+        width: 110px;
       }
       &.active{
         a>p{
@@ -95,19 +162,21 @@
 .sn-phc-item{
   position: relative;
   padding: 30px 0;
+  .sn_phc_menu{
+    position: relative;
+  }
   .snphc-desc{
     width: 500px;
     .sn-phcd-center{
       position: absolute;
       top: 50%;
       width: 500px;
-      @include transform(translateY(-50%));
       .snphc-tag{
         width: 192px;
         height: 107px;
         line-height: 140px;
         color: $text-5;
-        font-size: 2.9rem;
+        font-size: 29px;
         font-weight: bolder;
         text-indent: 1.2em;
         display: inline-block;
@@ -115,28 +184,31 @@
       }
       .snphc-title{
         margin-top: 10px;
-        font-size: 2.4rem;
+        font-size: 24px;
         font-weight: bold;
       }
       .snphc-title-2{
         margin-top: 10px;
-        font-size: 3rem;
+        font-size: 24px;
         font-weight: bold;
+        color: $text-1;
         margin-bottom: 20px;
       }
       .snphc-abstract{
-        font-size: 1.6rem;
+        color: $text-2;
+        font-size: 16px;
         line-height: 2;
       }
       .snphc-content{
-        font-size: 1.6rem;
+        color: $text-2;
+        font-size: 16px;
       }
       .snphc-link{
         margin-top: 15px;
         &>a{
           position: relative;
           left: 0;
-          font-size: 1.6rem;
+          font-size: 16px;
         }
       }
     }
@@ -152,28 +224,35 @@
 //成长历程
 .sn-we-route{
   .sn-wr-title{
-    font-size: 4rem;
-    color: $text-9;
+    font-size: 40px;
+    color: $text-8;
     font-weight: bolder;
     margin-bottom: 50px;
     margin-left: 40px;
   }
   .sn-wr-list{
     position: relative;
-    .icon-time{
+    margin-bottom: 50px;
+    &>a{
+      @extend .clear-fix;
+    }
+    .icon-self-time{
       position: absolute;
       top: -35px;
       left: 173px;
       width: 32px;
       height: 32px;
       background: url("../images/time.png") no-repeat center;
+      *background: none;
       @include background-size(32px 32px);
+      filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+                      src='../images/time.png',
+                      sizingMethod='scale');
     }
-    &:before{
-      content: '';
+    .sn-through-line{
       position: absolute;
       left: 187px;
-      display: inline-block;
+      display: block;
       width: 1px;
       height: 100%;
       border-right: 1px solid $border-color;
@@ -192,31 +271,37 @@
     .sn-wr-item{
       position: relative;
       margin: 10px 40px;
-      &:before{
-        content: attr(data-group);
+      .title{
         color: $text-6;
-        font-size: 3rem;
+        font-size: 30px;
         display: block;
+        margin-left: 0;
       }
-      &:after{
-        content: '';
-        display: inline-block;
+      .sn-wr-arrow{
+        display: block;
         position: absolute;
         top: 7px;
         left: 105px;
         width: 32px;
         height: 32px;
         background: url("../images/arrow_down.png") no-repeat center;
+        *background: none;
         @include background-size(32px 32px);
+        filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+                        src='../images/arrow_down.png',
+                        sizingMethod='scale');
       }
       &>li{
-        margin-left: 150px;
-        font-size: 1.6rem;
-        color: $text-3;
+        position: relative;
+        margin-left: 190px;
+        font-size: 16px;
+        color: $text-2;
         padding: 5px 0;
-        &:before{
-          content: '';
-          display: inline-block;
+        .prefix-short-line{
+          display: block;
+          position: absolute;
+          left: -40px;
+          top: 15px;
           width: 25px;
           height: 1px;
           vertical-align: middle;
@@ -236,40 +321,40 @@
     .sn-cls-title{
       color: $text-2;
       font-weight: bolder;
-      font-size: 2.4rem;
+      font-size: 24px;
     }
     .sn-cls-sub-title{
       color: $text-2;
       font-weight: bolder;
-      font-size: 1.8rem;
+      font-size: 18px;
     }
     .sn-cls-desc{
-      color: $text-3;
+      color: $text-2;
       line-height: 2;;
-      font-size: 1.6rem;
+      font-size: 16px;
     }
   }
 }
 
-//用户工具 授权管理工具
+//开发商工具 授权管理工具
 .sn-pt-section{
   .sn-pt-item{
     margin: 20px 0;
     .sn-pti-title{
-      color: $text-2;
+      color: $text-1;
       font-weight: bolder;
-      font-size: 2.4rem;
+      font-size: 24px;
     }
     .sn-pti-sub-title{
       color: $text-2;
       font-weight: bolder;
-      font-size: 1.8rem;
+      font-size: 18px;
     }
     .sn-pti-desc{
       margin-top: 20px;
-      color: $text-3;
+      color: $text-2;
       line-height: 2;;
-      font-size: 1.6rem;
+      font-size: 16px;
     }
   }
 }

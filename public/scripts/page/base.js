@@ -4,6 +4,16 @@
 $(document).ready(function () {
     var initPage = {
         /**
+         * 获取url参数
+         * @param name
+         * @returns {null}
+         */
+        getParams :function(name) {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        },
+        /**
          * 初始化menu slide
          */
         initMenuSlide : function () {
@@ -37,7 +47,7 @@ $(document).ready(function () {
         initSiteMapAnimation:function () {
             var opts = {
                 target:'.sn-sm-item .info,.snphc-link>a,.animate_hover_move',
-                left:'15px',
+                left:'15px'
             };
             $(document).on('mouseover',opts.target,function () {
                 var $this = $(this);
@@ -54,7 +64,7 @@ $(document).ready(function () {
         initTabChangeEvent:function () {
             var opts = {
                 target:$('.sn-nav-tabs>li'),
-                targetCon:$('.sn-tab-content>div'),
+                targetCon:$('.sn-tab-content>div')
             };
             opts.target.find('a').click(function () {
                 var $this = $(this);
@@ -66,6 +76,15 @@ $(document).ready(function () {
                     $(id).addClass('active');
                 }
             });
+            var tab = initPage.getParams('tab');
+            if(tab>0) {
+                opts.target.removeClass('active');
+                var obj = opts.target.eq(tab);
+                var tmpId = obj.find('a').data('id');
+                obj.addClass('active');
+                opts.targetCon.removeClass('active');
+                $(tmpId).addClass('active');
+            }
         },
         /**
          * 初始化诚聘精英 列表伸缩效果
@@ -73,17 +92,24 @@ $(document).ready(function () {
         initRecruitLiEvent:function () {
             var opts = {
                 target:$('.sn-wr-list>li'),
-                targetCon:'.sn-wrl-desc',
+                targetCon:'.sn-wrl-desc'
             };
-            opts.target.click(function () {
+            opts.target.unbind().bind('click',function () {
                 var $this = $(this);
                 if($(opts.targetCon,$this).html()==0){
                     return false;
                 }
-                opts.target.removeClass('active');
-                $this.siblings().find(opts.targetCon).slideUp();
-                $(opts.targetCon,$this).slideDown();
-                $this.addClass('active');
+                var siblingsLis  = $this.siblings();
+                siblingsLis.removeClass('active');
+                siblingsLis.find(opts.targetCon).slideUp();
+
+                if($this.hasClass('active')){
+                    $(opts.targetCon,$this).slideUp();
+                    $this.removeClass('active');
+                }else{
+                    $(opts.targetCon,$this).slideDown();
+                    $this.addClass('active');
+                }
             });
 
         },
@@ -123,7 +149,7 @@ $(document).ready(function () {
                     'http://www.hikvision.com/cn/index.html',
                     'http://www.hollysys.com',
                     'http://www.hikvision.com/cn/index.html',
-                    'http://eabax.com',
+                    'http://eabax.com'
                 ]
             };
             $(document).on('click',opts.targetParent,function () {
@@ -151,63 +177,35 @@ $(document).ready(function () {
             });
         },
         /**
-         * 初始化轮播 swiper
-         */
-        initSwiperEvent : function () {
-            var mySwiper = new Swiper('.swiper-slide-container', {
-                autoplay: 3000,//可选选项，自动滑动
-                loop : true,
-                effect : 'fade',
-                pagination: '.swiper-pagination',
-                // paginationClickable: true,
-                spaceBetween: 30,
-                fade: {
-                    crossFade: true,
-                },
-                prevButton:'.swiper-button-prev',
-                nextButton:'.swiper-button-next',
-
-            });
-
-            var mySwiper2 = new Swiper('.sn-partners-slide', {
-                paginationClickable: true,
-                slidesPerView: 5,
-                spaceBetween: 30,
-                prevButton:'.swiper-button-prev',
-                nextButton:'.swiper-button-next',
-
-            });
-
-
-        },
-        /**
          * 返回顶部
          */
         initScrollTop :function () {
-            var opts = {
-                getScrollTop: function () {
-                    return document.documentElement.scrollTop;
-                },
-                setScrollTop: function (value) {
-                    document.documentElement.scrollTop = value;
-                },
+            var oTop = document.getElementById("sn_go_top");
+            var screenw = document.documentElement.clientWidth || document.body.clientWidth;
+            var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+            oTop.style.left = screenw - oTop.offsetWidth +"px";
+            oTop.style.top = screenh - oTop.offsetHeight + "px";
+            window.onscroll = function(){
+                var scrolltop = document.documentElement.scrollTop || document.body.scrollTop;
+                oTop.style.top = screenh - oTop.offsetHeight + scrolltop +"px";
             };
-            // JavaScript Document
-            $(document).on('click','#sn_go_top',function () {
-                var goTop=setInterval(function () {
-                    opts.setScrollTop(opts.getScrollTop()/1.1);
-                    if(opts.getScrollTop()<1){
-                        clearInterval(goTop);
-                    }
-                },10);
+            oTop.onclick = function(){
+                document.documentElement.scrollTop = document.body.scrollTop =0;
+            };
 
-            });
         },
         /**
          * 修正 sn-phc-item 高度
          */
         initFixedSnPhcItemHeight :function () {
-            $('.sn-phc-item .snphc-desc').height($('.sn-phc-item .sn-phcd-center').height());
+            var height = $('.sn-phc-item .sn-phcd-center').height();
+            var halfHeight = '-'+parseInt(height/2)+'px';
+            var style = {
+                height: height,
+                marginTop:halfHeight
+            };
+            $('.sn-phc-item .snphc-desc').height(height);
+            $('.sn-phc-item .snphc-desc .sn-phcd-center').css(style);
         },
         /**
          * 初始化首页列表切换动画
@@ -238,52 +236,50 @@ $(document).ready(function () {
                 othersLi.removeClass('active');
                 $(this).parents('li').removeClass('active').addClass('active');
 
-                e.preventDefault();
+                if(e && e.preventDefault){
+                    e.preventDefault();
+                }else{
+                    window.event.returnValue = false;//注意加window
+                }
                 e.stopPropagation();
                 if(!status){
                     var len=$('.sn_phc_menu').length;
                     if(len>0){
                         for (var i=0;i<len;i++){
                             var tmp=$('.sn_phc_menu').eq(i);
-                            tmp.data('position',tmp.offset().top);
+                            tmp.attr('data-position',tmp.offset().top);
                         }
                     }
                     status= true;
                 }
                 var initObj = $('.sn_phc_menu').eq(0);
                 var initId = '#'+initObj.attr('id');
-                var srcId = initObj.data('id');
+                var srcId = initObj.attr('data-id');
                 if(!srcId){
                     srcId = initId;
                 }
                 var srcPTop = $(srcId).offset().top;
                 var id = $(this).attr('href');
                 var targetTop = $(id).offset().top;
-                var srcPosition= $(srcId).data('position');
-                var targetPosition= $(id).data('position');
+                var srcPosition= parseInt($(srcId).attr('data-position'));
+                var targetPosition= parseInt($(id).attr('data-position'));
 
                 var diffSHeight = targetTop - srcPosition;
                 var diffTHeight = srcPTop - targetPosition;
-                initObj.data('id',id);
-                move(srcId)
-                    .set('opacity', '0.5')
-                    .y(diffSHeight)
-                    .end(function () {
-                        move(srcId)
-                            .set('opacity', '1')
-                            .duration(1000)
-                            .end();
-                    });
-                move(id)
-                    .set('opacity', '0.5')
-                    .y(diffTHeight)
-                    .end(function () {
-                        move(id)
-                            .set('opacity', '1')
-                            .duration(1000)
-                            .end();
-                    });
+                initObj.attr('data-id',id);
+                $(srcId).animate({
+                    'opacity': 0.5,
+                    'top': diffSHeight
+                },function () {
+                    $(this).css('opacity',1);
+                });
 
+                $(id).animate({
+                    'opacity': 0.5,
+                    'top': diffTHeight
+                },function () {
+                    $(this).css('opacity',1);
+                });
             });
 
         },
@@ -310,7 +306,7 @@ $(document).ready(function () {
                     auth_tools:'auth_tools.html',
                     user_tools:'user_tools.html',
                     //加密锁
-                    locks:'',
+                    locks:'locks.html',
                     picked_5:'lock_jr5_std.html',//标准版
                     picked_5_download:'http://115.29.189.225/Files/V5-Setup.zip',//标准版
                     picked_5_bt:'lock_jr5_bt.html',//蓝牙版
@@ -330,7 +326,7 @@ $(document).ready(function () {
                     picked_1:'lock_lr1_std.html',
                     picked_1_clock_sdk_download:'http://115.29.189.225/Files/V1-v1.4-Res.zip',
                     picked_1_clock_doc_download:'http://115.29.189.225/Files/V1-v1.4-Doc.zip',
-                    try_and_buy:'try_and_buy.html',
+                    try_and_buy:'lock_jr5_std.html?tab=2',
                     //解决方案
                     solution:'solution.html',
                     game_industry:'su_game.html',
@@ -360,12 +356,12 @@ $(document).ready(function () {
                     //登录
                     login:'http://developer.senseshield.com/auth/',
                     register:'http://developer.senseshield.com/auth/register.jsp',
-                    area:'http://www.senselock.com/en/index.php',
+                    area:'http://www.senselock.com/en/index.php'
                 }
             };
             // JavaScript Document
             $(document).on('click',opts.target,function () {
-                var type = $(this).data('url');
+                var type = $(this).attr('data-url');
                 var url = opts.urlMap[type];
                 if(url){
                     window.location.href=url;
@@ -392,19 +388,99 @@ $(document).ready(function () {
             }
         },
 
+        /**
+         *首页menu 浮动
+         */
+        initHomeFixed:function () {
+            var url = window.location.href;
+            if(url.indexOf('index.html')===-1){
+                $('.sn-header').css('position','relative');
+            }else{
+                $('.sn-header').css('position','fixed');
+            }
+        },
+        /**
+         * 表格颜色间隔
+         */
+        initTableGapColor: function () {
+            $(".sn-ld-params tr:nth-child(odd)").addClass("odd");
+        },
+        initTryAndBuyEvent: function () {
+            $('.js_try_buy_submit_btn').unbind().bind('click',function () {
+                var obj = $(".js_try_buy_form");
+                var params = {
+                    name:$.trim($('input[name=name]',obj).val()),
+                    email:$.trim($('input[name=email]',obj).val()),
+                    mobile:$.trim($('input[name=mobile]',obj).val()),
+                    company:$.trim($('input[name=company]',obj).val()),
+                    type:$.trim($('input[name=type]',obj).val()),
+                    commodity:'精锐5-试用版',
+                    desc:$.trim($('textarea[name=desc]',obj).val())
+                };
+                if(!params.name){
+                    alert('请输入姓名');
+                    return false;
+                }
+                if(!params.email){
+                    alert('请输入邮箱');
+                    return false;
+                }
+                if(!params.mobile){
+                    alert('请输入电话');
+                    return false;
+                }
+                if(!params.company){
+                    alert('请输入公司名称');
+                    return false;
+                }
+                if(!params.type){
+                    alert('请输入软件类别');
+                    return false;
+                }
+                if(!params.desc){
+                    alert('请输入您对加密锁的要求');
+                    return false;
+                }
+                $.ajax({
+                    //提交数据的类型 POST GET
+                    type:"POST",
+                    //提交的网址
+                    url:"buy.php",
+                    //提交的数据
+                    data:params,
+                    //返回数据的格式
+                    datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
+                    //成功返回之后调用的函数
+                    success:function(data){
+                        alert('申请成功');
+                    },
+                    //调用出错执行的函数
+                    error: function(){
+                        //请求出错处理
+                        alert('操作失败请稍候再试!');
+                    }
+                });
+            });
+
+
+        },
         run : function () {
-            initPage.initBrowserVerision();
+            // initPage.initBrowserVerision();
             initPage.initMenuSlide();
-            initPage.initSwiperEvent();
             initPage.initPartnersAnimation();
             initPage.initSiteMapAnimation();
-            initPage.initScrollTop();
             initPage.initLocationUrlEvent();
             initPage.initFixedSnPhcItemHeight();
             initPage.initHomeSwitchBtn();
             initPage.initQQ();
             initPage.initTabChangeEvent();
             initPage.initRecruitLiEvent();
+            initPage.initTableGapColor();
+            initPage.initHomeFixed();
+            initPage.initTryAndBuyEvent();
+            setTimeout(function () {
+                initPage.initScrollTop();
+            },300)
         }
     };
 

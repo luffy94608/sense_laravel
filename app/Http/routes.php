@@ -23,7 +23,3 @@
  */
 Route::controller('/','IndexController');
 
-/**
- * 登录注册 重置密码
- */
-Route::controller('auth', 'Auth\AuthController');
