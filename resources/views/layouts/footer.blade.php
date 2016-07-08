@@ -7,7 +7,7 @@
             <li><a class="info "   href="platform_intro.html">了解云授权平台</a></li>
             <li><a class="info "   href="cloud_lock.html">云锁服务</a></li>
             <li><a class="info "   href="ss_service.html">SS安全服务</a></li>
-            <li><a class="info "   href="http://developer.senseshield.com/auth/register.jsp">云帐号注册</a></li>
+            <li><a class="info " href="http://developer.senseshield.com/auth/register.jsp" target="_blank" >云帐号注册</a></li>
         </ul>
 
         <ul class="sn-sm-item">
@@ -89,7 +89,7 @@
 <div class="sn-fix-menu">
     <div class="mask"></div>
     <a class="qq clear-fix" id='BizQQWPA' href="javascript:void(0);"></a>
-    <a class="mobile" href="tel:400-6506-701"></a>
+    <a class="mobile" href="javascript:void(0);"></a>
     <a class="qr" href="javascript:void(0); ">
         <img src="/images/float_layer/qr.png">
     </a>

@@ -1,7 +1,8 @@
+
 <!--公共header-->
 <div class="bg-white  sn-header text-left">
     <div class="wrap clear-fix">
-        <a href="/" class="logo_a">
+        <a href="javascript:void (0);" onclick="window.location.href = 'index.html';" class="logo_a">
             <div class="logo fl ">
                 <img src="/images/logo/logo.png">
                 <div class="logo-txt">
@@ -15,10 +16,10 @@
         <div class="menu fl" >
             <div class="">
                 <a href="javascript:void(0);"  >云授权</a>
-                <div class="sub-menu-group  ">
+                <div class="sub-menu-group ">
                     <ul class="sub-menu-item clear-fix">
                         <li class="disabled">
-                            <a class="text-center">
+                            <a class="text-center color-blue">
                                 云授权平台
                             </a>
                         </li>
@@ -41,7 +42,7 @@
                     </ul>
                     <ul class="sub-menu-item ">
                         <li class="disabled">
-                            <a class=" text-center" >
+                            <a class=" text-center color-blue" >
                                 专业工具
                             </a>
                         </li>
@@ -63,7 +64,7 @@
                     </ul>
                     <ul class="sub-menu-item ">
                         <li class="disabled">
-                            <a   class=" text-center" >
+                            <a   class=" text-center color-blue" >
                                 硬件加密锁
                             </a>
                         </li>
@@ -102,7 +103,7 @@
                     <li><a href="su_platform.html" >云授权</a></li>
                     <li><a href="download_5.html"  >精锐5</a></li>
                     <li>
-                        <a href="solution.html"  >解决方案<i class="icon-angle-right"></i></a>
+                        <a href="solution.html"  >解决方案<i class="sn-arrow-right"></i></a>
                         <ul class="sub-child-menu">
                             <li><a href="su_game.html"  >游戏行业</a></li>
                             <li><a href="su_manage.html"  >管理行业</a></li>
@@ -118,7 +119,7 @@
             <div>
                 <a href="javascript:void(0);"  >我们</a>
                 <ul class="sub-menu ">
-                    <li><a href="company_intro.html" >公司简介</a></li>
+                    <li><a href="company_intro.html"   >公司简介</a></li>
                     <li><a href="news.html"  >公司新闻</a></li>
                     <li><a href="we_route.html" >成长历程</a></li>
                     <li><a href="we_intellectual.html"  >知识产权</a></li>
@@ -130,7 +131,7 @@
             <div class="bg-slide" ></div>
         </div>
         <div class="action fr">
-            <a class="sn-login " href="http://developer.senseshield.com/auth/">云帐号登录</a>
+            <a class="sn-login " target="_blank" href="http://developer.senseshield.com/auth/">云帐号登录</a>
         </div>
     </div>
 </div>

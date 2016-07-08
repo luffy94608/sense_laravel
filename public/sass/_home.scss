@@ -1,3 +1,4 @@
+
 //轮播图
 .sn-slide-section{
   width: 100%;
@@ -9,6 +10,9 @@
       li{
         left: 0;
         right:  0;
+        img{
+          width: 100%;
+        }
       }
     }
     .bx-pager,.bx-controls-auto{
@@ -76,11 +80,10 @@
     padding: 0 50px;
     position: relative;
     .bx-wrapper{
-      border: 0!important;
       margin: 0 auto;
       box-shadow: none;
+      border: 0!important;
       .bx-viewport{
-        border: 0!important;
         li{
           left: 0;
           right:  0;
@@ -280,15 +283,16 @@
       .sn-wr-arrow{
         display: block;
         position: absolute;
-        top: 7px;
+        top: 20px;
+        *top: 15px;
         left: 105px;
-        width: 32px;
-        height: 32px;
+        width: 16px;
+        height: 16px;
         background: url("../images/arrow_down.png") no-repeat center;
         *background: none;
-        @include background-size(32px 32px);
+        @include background-size(16px 16px);
         filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
-                        src='../images/arrow_down.png',
+                        src='../images/arrow_down_16.png',
                         sizingMethod='scale');
       }
       &>li{

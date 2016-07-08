@@ -23,21 +23,21 @@ $(document).ready(function () {
                 menuItemSlideNodeStr:'.sn-header .menu .bg-slide',
                 menuItemNodeStr : '.sn-header .menu>div'
             };
-            $(document).on('mouseover',opts.menuItemNodeStr,function () {
+            $(opts.menuItemNodeStr).unbind('mouseenter').bind('mouseenter',function () {
                 var left = $(this).offset().left;
                 $('.sub-menu,.sub-menu-group',$(this)).addClass('active');
                 if($(this).html()){
                     opts.menuItemSlideNode.stop().animate({'left':left},'fast');
                 }
             });
-            $(document).on('mouseout',opts.menuItemNodeStr,function () {
+            $(opts.menuItemNodeStr).unbind('mouseleave').bind('mouseleave',function () {
                 $('.sub-menu,.sub-menu-group',$(this)).removeClass('active');
                 opts.menuItemSlideNode.stop().animate({'left':'-115px'},'fast');
             });
-            $(document).on('mouseover','.sub-menu>li',function () {
+            $('.sub-menu>li').unbind('mouseenter').bind('mouseenter',function () {
                 $('.sub-child-menu',$(this)).addClass('active');
             });
-            $(document).on('mouseout','.sub-menu>li',function () {
+            $('.sub-menu>li').unbind('mouseleave').bind('mouseleave',function () {
                 $('.sub-child-menu',$(this)).removeClass('active');
             });
         },
@@ -181,6 +181,9 @@ $(document).ready(function () {
          */
         initScrollTop :function () {
             var oTop = document.getElementById("sn_go_top");
+            if(!oTop){
+                return false;
+            }
             var screenw = document.documentElement.clientWidth || document.body.clientWidth;
             var screenh = document.documentElement.clientHeight || document.body.clientHeight;
             oTop.style.left = screenw - oTop.offsetWidth +"px";
@@ -360,32 +363,13 @@ $(document).ready(function () {
                 }
             };
             // JavaScript Document
-            $(document).on('click',opts.target,function () {
+            $(opts.target).unbind().bind('click',function () {
                 var type = $(this).attr('data-url');
                 var url = opts.urlMap[type];
                 if(url){
                     window.location.href=url;
                 }
             });
-        },
-        /**
-         * 浏览器判断
-         */
-        initBrowserVerision : function () {
-            var browser=navigator.appName;
-            var b_version=navigator.appVersion;
-            var version=b_version.split(";");
-            if(version.length<2){
-                return false;
-            }
-            var trim_Version=version[1].replace(/[ ]/g,"");
-            if(browser=="Microsoft Internet Explorer")
-            {
-                if(trim_Version=="MSIE6.0"||trim_Version=="MSIE7.0"||trim_Version=="MSIE8.0"||trim_Version=="MSIE9.0")
-                {
-                    alert('您好，您的浏览器版本较低，如显示不正常，请升级浏览器到IE10以上.')
-                }
-            }
         },
 
         /**
@@ -464,8 +448,53 @@ $(document).ready(function () {
 
 
         },
+        initFeedBackEvent: function () {
+            $('.feedback_submit_btn').unbind().bind('click',function () {
+                var obj = $(".feedback_form");
+                var params = {
+                    name:$.trim($('input[name=name]',obj).val()),
+                    email:$.trim($('input[name=email]',obj).val()),
+                    content:$.trim($('textarea[name=content]',obj).val())
+                };
+                if(!params.name){
+                    alert('请输入姓名');
+                    return false;
+                }
+                if(!params.email){
+                    alert('请输入邮箱');
+                    return false;
+                }
+                if(!params.content){
+                    alert('请输入留言内容');
+                    return false;
+                }
+                $.ajax({
+                    //提交数据的类型 POST GET
+                    type:"POST",
+                    //提交的网址
+                    url:"feedback.php",
+                    //提交的数据
+                    data:params,
+                    //返回数据的格式
+                    datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
+                    //成功返回之后调用的函数
+                    success:function(data){
+                        alert('反馈成功');
+                        $('input[name=name]',obj).val('');
+                        $('input[name=email]',obj).val('');
+                        $('textarea[name=content]',obj).val('');
+                    },
+                    //调用出错执行的函数
+                    error: function(){
+                        //请求出错处理
+                        alert('操作失败请稍候再试!');
+                    }
+                });
+            });
+
+
+        },
         run : function () {
-            // initPage.initBrowserVerision();
             initPage.initMenuSlide();
             initPage.initPartnersAnimation();
             initPage.initSiteMapAnimation();
@@ -478,6 +507,7 @@ $(document).ready(function () {
             initPage.initTableGapColor();
             initPage.initHomeFixed();
             initPage.initTryAndBuyEvent();
+            initPage.initFeedBackEvent();
             setTimeout(function () {
                 initPage.initScrollTop();
             },300)

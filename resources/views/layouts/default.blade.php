@@ -8,6 +8,7 @@
     <!--[if lt IE 9]>
         <script src="/bower_components/html5shiv/dist/html5shiv.min.js"></script>
     <![endif]-->
+    <link type="text/css" rel="stylesheet" href="/styles/font-awesome.css">
     <link type="text/css" rel="stylesheet" href="/styles/main.css">
     <link type="text/css" rel="stylesheet" href="/bower_components/bxslider-4/dist/jquery.bxslider.min.css">
     <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzkzODA1NDQ1OF8zNTQwMDNfNDAwNjUwNjcwMV8"></script>
