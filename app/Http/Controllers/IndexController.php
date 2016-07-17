@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Jobs\SendReminderEmail;
+use App\Models\ApiResult;
 use App\Models\Banner;
 use App\Models\Cert;
 use App\Models\Cloud;
@@ -447,13 +448,50 @@ class IndexController extends Controller
     /**
      * 发送提醒的 e-mail 给指定用户。
      */
-    public function sendReminderEmail()
+    public function postFeedback()
     {
-        $data = ['email'=>'29620639@qq.com', 'name'=>'luffy'];
-        \Mail::send('emails.reminder', $data, function($message) use($data)
+        $params['name'] = $_POST['name'] ? $_POST['name'] : false;
+        $params['email'] = $_POST['email'] ? $_POST['email'] : false;
+        $params['content'] = $_POST['content'] ? $_POST['content'] : false;
+        if(!in_array(false,$params,true))
         {
-            $message->to($data['email'], $data['name'])->subject('欢迎注册我们的网站，请激活您的账号！');
-        });
+
+//            $data = ['email'=>'29620639@qq.com', 'name'=>'luffy'];
+        $data = ['email'=>'sense@sense.com.cn', 'name'=>'luffy'];
+            $data['info'] = $params;
+            \Mail::send('emails.feedback', $data, function($message) use($data)
+            {
+                $message->to($data['email'], $data['name'])->subject('意见反馈');
+            });
+        }
+        return response()->json((new ApiResult(0, 'success', []))->toJson());
+    }
+
+    /**
+     * 发送提醒的 e-mail 给指定用户。
+     */
+    public function postApply()
+    {
+
+        $params['name'] = $_POST['name'] ? $_POST['name'] : false;
+        $params['mobile'] = $_POST['mobile'] ? $_POST['mobile'] : false;
+        $params['email'] = $_POST['email'] ? $_POST['email'] : false;
+        $params['company'] = $_POST['company'] ? $_POST['company'] : false;
+        $params['commodity'] = $_POST['commodity'] ? $_POST['commodity'] : false;
+        $params['type'] = $_POST['type'] ? $_POST['type'] : false;
+        $params['desc'] = $_POST['desc'] ? $_POST['desc'] : false;
+        if(!in_array(false,$params,true))
+        {
+
+//            $data = ['email'=>'29620639@qq.com', 'name'=>'luffy'];
+        $data = ['email'=>'sense@sense.com.cn', 'name'=>'luffy'];
+            $data['info'] = $params;
+            \Mail::send('emails.apply', $data, function($message) use($data)
+            {
+                $message->to($data['email'], $data['name'])->subject('申请试用');
+            });
+        }
+        return response()->json((new ApiResult(0, 'success', []))->toJson());
     }
 
 }
