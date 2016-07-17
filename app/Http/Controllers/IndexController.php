@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Models\Banner;
 use App\Models\CompanyNew;
+use App\Models\PageContent;
+use App\Models\Partner;
 use App\Models\Recruit;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\View;
@@ -21,9 +24,16 @@ class IndexController extends Controller
      */
     public function getIndex()
     {
-        
+        $banners = Banner::orderBy('sort_num', 'asc')->get();
+        $partners = Partner::orderBy('sort_num', 'asc')->get();
+        $list = PageContent::where('page_id',0)
+            ->OrderBy('sort_num','asc')->get();
+
         $params = [
-            'page' =>'index'
+            'page' =>'index',
+            'banners' =>$banners,
+            'partners' =>$partners,
+            'list' =>$list,
         ];
         return View::make('index.index',$params);
     }

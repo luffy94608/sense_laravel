@@ -290,6 +290,8 @@
          }
          .ll-desc{
            white-space: pre-line;
+           *white-space: pre;/* IE */
+           word-wrap: break-word; /* IE */
            font-size: 16px;
            line-height: 30px;
            color: $text-2;

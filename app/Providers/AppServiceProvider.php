@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Menu;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,6 +17,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        Blade::directive('relUrl', function($expression) {
+            $url = $expression;
+            if(stripos($url,'http://')===false && stripos($url,'https://')===false && stripos($url,'ftp://')===false){
+                $host = \Config::get('app')['img_host'];
+                $url = $host.$url;
+            }
+            return $url;
+        });
     }
 
     /**
@@ -30,6 +39,14 @@ class AppServiceProvider extends ServiceProvider
             $menus = Menu::all();
             $params = [
                 'menus'=>$menus
+            ];
+            $view->with($params);
+        });
+
+        View::composer('layouts.footer',function($view){
+            $maps = Menu::all();
+            $params = [
+                'maps'=>$maps
             ];
             $view->with($params);
         });

@@ -59,6 +59,8 @@
 //text
 .pre-line{
   white-space: pre-line!important;
+  *white-space: pre!important;/* IE */
+  word-wrap: break-word!important; /* IE */
 }
 .bolder{
   font-weight: bolder;

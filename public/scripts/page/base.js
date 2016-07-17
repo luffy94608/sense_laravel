@@ -210,82 +210,7 @@ $(document).ready(function () {
             $('.sn-phc-item .snphc-desc').height(height);
             $('.sn-phc-item .snphc-desc .sn-phcd-center').css(style);
         },
-        /**
-         * 初始化首页列表切换动画
-         */
-        initHomeSwitchBtn:function () {
-            var status= false;
-            $('.sn-phcm-list a').unbind().bind('click',function (e) {
-                var othersLi = $(this).parents('li').siblings();
-                var imgs = othersLi.find('img');
-                if(imgs.length){
-                    var srcStr = '.png';
-                    var activeStr = '_active.png';
-                    for (var j=0;j<imgs.length;j++){
-                        var tmpObj = othersLi.find('img').eq(j);
-                        var tmpImg = tmpObj.attr('src');
-                        if(tmpImg.indexOf(activeStr)!==-1){
-                            tmpImg = tmpImg.replace(activeStr,srcStr);
-                            tmpObj.attr('src',tmpImg);
-                        }
-                    }
-                    var currentImgObj = $(this).find('img');
-                    var currentImg =currentImgObj.attr('src');
-                    if(currentImg.indexOf(srcStr)!==-1 && currentImg.indexOf(activeStr) ===-1){
-                        currentImg = currentImg.replace(srcStr,activeStr);
-                        currentImgObj.attr('src',currentImg);
-                    }
-                }
-                othersLi.removeClass('active');
-                $(this).parents('li').removeClass('active').addClass('active');
 
-                if(e && e.preventDefault){
-                    e.preventDefault();
-                }else{
-                    window.event.returnValue = false;//注意加window
-                }
-                e.stopPropagation();
-                if(!status){
-                    var len=$('.sn_phc_menu').length;
-                    if(len>0){
-                        for (var i=0;i<len;i++){
-                            var tmp=$('.sn_phc_menu').eq(i);
-                            tmp.attr('data-position',tmp.offset().top);
-                        }
-                    }
-                    status= true;
-                }
-                var initObj = $('.sn_phc_menu').eq(0);
-                var initId = '#'+initObj.attr('id');
-                var srcId = initObj.attr('data-id');
-                if(!srcId){
-                    srcId = initId;
-                }
-                var srcPTop = $(srcId).offset().top;
-                var id = $(this).attr('href');
-                var targetTop = $(id).offset().top;
-                var srcPosition= parseInt($(srcId).attr('data-position'));
-                var targetPosition= parseInt($(id).attr('data-position'));
-
-                var diffSHeight = targetTop - srcPosition;
-                var diffTHeight = srcPTop - targetPosition;
-                initObj.attr('data-id',id);
-                $(srcId).animate({
-                    'opacity': 0.5,
-                    'top': diffSHeight
-                },function () {
-                    $(this).css('opacity',1);
-                });
-
-                $(id).animate({
-                    'opacity': 0.5,
-                    'top': diffTHeight
-                },function () {
-                    $(this).css('opacity',1);
-                });
-            });
-
-        },
         /**
          * 网站跳转``
          */
@@ -500,7 +425,6 @@ $(document).ready(function () {
             initPage.initSiteMapAnimation();
             initPage.initLocationUrlEvent();
             initPage.initFixedSnPhcItemHeight();
-            initPage.initHomeSwitchBtn();
             initPage.initQQ();
             initPage.initTabChangeEvent();
             initPage.initRecruitLiEvent();
@@ -508,9 +432,7 @@ $(document).ready(function () {
             initPage.initHomeFixed();
             initPage.initTryAndBuyEvent();
             initPage.initFeedBackEvent();
-            setTimeout(function () {
-                initPage.initScrollTop();
-            },300)
+            initPage.initScrollTop();
         }
     };
 
