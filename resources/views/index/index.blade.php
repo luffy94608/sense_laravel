@@ -54,7 +54,7 @@
         <section  class="sn-phc-item border-bottom-grey">
 
             <div id="sn_phc_menu_{{ $v->id }}" class="wrap clear-fix text-left sn_phc_menu">
-                <div class="snphc-desc fl">
+                <div class="snphc-desc {{ $v->position == 1 ? 'fr' : 'fl' }}">
                     <div class="sn-phcd-center">
 
                         <div class="snphc-tag">{{ $v->title }}</div>
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="snphc-img fr">
+                <div class="snphc-img {{ $v->position == 1 ? 'fl' : 'fr' }}">
                     <img src="{{ $funcTools->resourceUrl($v->pic) }}">
                 </div>
             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Models\Banner;
 use App\Models\Cert;
+use App\Models\Cloud;
 use App\Models\CompanyNew;
 use App\Models\Download;
 use App\Models\Enums\CommonEnum;
@@ -55,6 +56,60 @@ class IndexController extends Controller
         return View::make('index.index',$params);
     }
 
+
+    /**
+     * 多功能主页
+     * @param $type
+     * @return mixed
+     */
+    public function getPage($type)
+    {
+        switch ($type)
+        {
+            case 1 ://文件下载
+                $page = $this->menuInfo->page;
+                $ids = explode(',',$page->extra);
+                $downloads = Download::whereIn('id',$ids)->get();
+                $types = [];
+                $downloadMap = [];
+                foreach ($downloads as $download)
+                {
+                    $types[$download->type->id] = $download->type;
+                    $downloadMap[$download->type->id][] = $download;
+                }
+                foreach ($types as &$type){
+                    if(array_key_exists($type->id,$downloadMap)){
+                        $type->files = $downloadMap[$type->id];
+                    }
+                }
+                $params = [
+                    'types'=>$types,
+                    'menuInfo'=>$this->menuInfo,
+                ];
+                return View::make('index.download_item',$params);
+                break;
+            case 2 ://文本列表
+                $params = [
+                    'menuInfo'=>$this->menuInfo,
+                ];
+                return View::make('index.page_2',$params);
+                break;
+            case 3 ://图文分离
+                $params = [
+                    'menuInfo'=>$this->menuInfo,
+                ];
+                return View::make('index.page_3',$params);
+                break;
+            case 4 ://图文混和
+
+                $params = [
+                    'menuInfo'=>$this->menuInfo,
+                ];
+                return View::make('index.page_4',$params);
+                break;
+        }
+
+    }
 
 
 
@@ -167,6 +222,83 @@ class IndexController extends Controller
             'menuInfo'=>$this->menuInfo,
         ];
         return View::make('index.solution',$params);
+    }
+
+    /**
+     * 云授权
+     * @return \Illuminate\Http\Response
+     */
+    public function getCloud()
+    {
+        $clouds = Cloud::OrderBy('sort_num','asc')
+            ->get();
+
+        foreach ($clouds as &$cloud){
+            $types = [];
+            if(!empty($cloud->download_ids) && $cloud->type==1)
+            {
+                $ids = explode(',',$cloud->download_ids);
+                $downloads = Download::whereIn('id',$ids)->get();
+                $downloadMap = [];
+                foreach ($downloads as $download)
+                {
+                    $types[$download->type->id] = $download->type;
+                    $downloadMap[$download->type->id][] = $download;
+                }
+                foreach ($types as &$type){
+                    if(array_key_exists($type->id,$downloadMap)){
+                        $type->files = $downloadMap[$type->id];
+                    }
+                }
+
+            }
+            $cloud->types = $types;
+        }
+
+        $params = [
+            'clouds'=>$clouds,
+            'menuInfo'=>$this->menuInfo,
+        ];
+        return View::make('index.cloud',$params);
+    }
+
+    /**
+     * 下载中心
+     * @return \Illuminate\Http\Response
+     */
+    public function getDownload()
+    {
+        $types = LockType::all();
+
+        $params = [
+            'types'=>$types,
+            'menuInfo'=>$this->menuInfo,
+        ];
+        return View::make('index.download',$params);
+    }
+
+    /**
+     * 建议反馈
+     * @return \Illuminate\Http\Response
+     */
+    public function getFeedback()
+    {
+        $params = [
+            'menuInfo'=>$this->menuInfo,
+        ];
+        return View::make('index.feedback',$params);
+    }
+
+    /**
+     * 联系我们
+     * @return \Illuminate\Http\Response
+     */
+    public function getContact()
+    {
+        $params = [
+            'menuInfo'=>$this->menuInfo,
+        ];
+        return View::make('index.contact',$params);
     }
 
     /**

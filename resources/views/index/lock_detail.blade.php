@@ -197,7 +197,7 @@
                                 {{ $download->content }}
                             </p>
                             <div class="sn-ld-btn-list">
-                                <button class="sn-ld-btn download ">{{ $download->btn_name }}</button>
+                                <a class="sn-ld-btn download text-center" href="{{ $funcTools->resourceUrl($download->url) }}">{{ $download->btn_name }}</a>
                             </div>
                         </li>
                     @endforeach
