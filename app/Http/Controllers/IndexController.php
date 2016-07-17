@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Jobs\SendReminderEmail;
 use App\Models\ApiResult;
+use App\Models\Apply;
 use App\Models\Banner;
 use App\Models\Cert;
 use App\Models\Cloud;
 use App\Models\CompanyNew;
 use App\Models\Download;
 use App\Models\Enums\CommonEnum;
+use App\Models\Feedback;
 use App\Models\Lock;
 use App\Models\LockType;
 use App\Models\Menu;
@@ -457,8 +459,13 @@ class IndexController extends Controller
         {
 
 //            $data = ['email'=>'29620639@qq.com', 'name'=>'luffy'];
-        $data = ['email'=>'sense@sense.com.cn', 'name'=>'luffy'];
+            $data = ['email'=>'sense@sense.com.cn', 'name'=>'luffy'];
             $data['info'] = $params;
+            $feedback = new Feedback();
+            $feedback->name = $params['name'];
+            $feedback->email = $params['email'];
+            $feedback->content = $params['content'];
+            $feedback->save();
             \Mail::send('emails.feedback', $data, function($message) use($data)
             {
                 $message->to($data['email'], $data['name'])->subject('意见反馈');
@@ -482,9 +489,18 @@ class IndexController extends Controller
         $params['desc'] = $_POST['desc'] ? $_POST['desc'] : false;
         if(!in_array(false,$params,true))
         {
+            $apply = new Apply();
+            $apply->name = $params['name'];
+            $apply->mobile = $params['mobile'];
+            $apply->email = $params['email'];
+            $apply->company = $params['company'];
+            $apply->commodity = $params['commodity'];
+            $apply->type = $params['type'];
+            $apply->desc = $params['desc'];
+            $apply->save();
 
 //            $data = ['email'=>'29620639@qq.com', 'name'=>'luffy'];
-        $data = ['email'=>'sense@sense.com.cn', 'name'=>'luffy'];
+            $data = ['email'=>'sense@sense.com.cn', 'name'=>'luffy'];
             $data['info'] = $params;
             \Mail::send('emails.apply', $data, function($message) use($data)
             {
