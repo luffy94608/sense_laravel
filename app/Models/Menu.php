@@ -80,7 +80,8 @@ class Menu extends Model
             foreach ($children as &$child){
                 $this->getRecursionChildrenFromParent($extraArr,$child);
                 if(count($child->children) == 1 && $child->children[0]->type==2){
-                    $child->children = $child->children[0]->children;
+//                    $child->children = $child->children[0]->children;
+                    $child = $child->children[0];
                 }
             }
         }

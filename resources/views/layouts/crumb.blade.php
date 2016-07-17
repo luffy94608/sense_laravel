@@ -4,6 +4,9 @@
     <img width="100%" src="{{ $funcTools->resourceUrl($menuInfo->page->banner) }}">
     <!--page bar 所在位置-->
     <section class="sn-page-bar">
+        @if( !empty($showCloud))
+            <div class="cloud"></div>
+        @endif
         <div class="wrap text-left sn-pb-content">
             <span>您现在的位置：</span>
             {!! $funcTools->toBuildBreadCrumbHtml($menuInfo) !!}

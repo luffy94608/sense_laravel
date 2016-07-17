@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Models\Banner;
+use App\Models\Cert;
 use App\Models\CompanyNew;
+use App\Models\Enums\CommonEnum;
 use App\Models\Menu;
 use App\Models\Page;
 use App\Models\PageContent;
 use App\Models\Partner;
 use App\Models\Recruit;
+use App\Models\Route;
+use App\Models\Solution;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\View;
 
@@ -47,6 +51,115 @@ class IndexController extends Controller
         ];
         return View::make('index.index',$params);
     }
+
+
+
+
+
+
+    /**
+     * 解决方案列表
+     * @return \Illuminate\Http\Response
+     */
+    public function getSolution()
+    {
+        $subs = Menu::where('parent_id',$this->menuInfo->id)
+            ->get();
+
+        $map = [];
+        if($subs)
+        {
+            foreach ($subs as $sub) {
+                $page = $sub->page;
+                $sid = $page->extra;
+                if(!empty($sid)){
+                    $map[$sid] = $sub;
+                }
+            }
+        }
+
+        $list = Solution::orderBy('sort_num','asc')->get();
+        if($list)
+        {
+            foreach ($list as &$v) {
+                if(array_key_exists($v->id,$map)){
+                    $v ->menu = $map[$v->id];
+                }
+            }
+        }
+
+        $params = [
+            'list'=>$list,
+            'menuInfo'=>$this->menuInfo,
+        ];
+        return View::make('index.solution',$params);
+    }
+
+    /**
+     * 解决方案详情
+     * @return \Illuminate\Http\Response
+     */
+    public function getSolutionDetail()
+    {
+        $page = $this->menuInfo->page;
+        $detail = Solution::find($page->extra);
+        $params = [
+            'detail'=>$detail,
+            'menuInfo'=>$this->menuInfo,
+        ];
+        return View::make('index.solution_detail',$params);
+    }
+
+    /**
+     * 成长历程
+     * @return \Illuminate\Http\Response
+     */
+    public function getRoute()
+    {
+        $list = Route::orderBy('sort_num','asc')->get();
+        $route = new Route();
+        $tree = $route->getTree($list);
+        $params = [
+            'list'=>$tree,
+            'menuInfo'=>$this->menuInfo,
+        ];
+        return View::make('index.route',$params);
+    }
+
+    /**
+     * 知识产权
+     * @return \Illuminate\Http\Response
+     */
+    public function getIntellectual()
+    {
+        $list = Cert::where('type',CommonEnum::CertTypeIntellectual)
+            ->orderBy('sort_num','asc')
+            ->get();
+        $params = [
+            'list'=>$list,
+            'certType'=>CommonEnum::CertTypeIntellectual,
+            'menuInfo'=>$this->menuInfo,
+        ];
+        return View::make('index.certs',$params);
+    }
+
+    /**
+     * 公司资质
+     * @return \Illuminate\Http\Response
+     */
+    public function getProperty()
+    {
+        $list = Cert::where('type',CommonEnum::CertTypeProperty)
+            ->orderBy('sort_num','asc')
+            ->get();
+        $params = [
+            'list'=>$list,
+            'certType'=>CommonEnum::CertTypeProperty,
+            'menuInfo'=>$this->menuInfo,
+        ];
+        return View::make('index.certs',$params);
+    }
+
 
     /**
      * 新闻

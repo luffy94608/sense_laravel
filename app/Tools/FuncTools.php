@@ -17,19 +17,16 @@ class FuncTools
      */
     public  function menuUrl($item)
     {
-        if( $item->btn_type == 1 ) {
-            $page = $item->page;
-            $type = $page->type;
-            $url = sprintf('%s?mid=%s',$type->url,$item->id);
-
-//            if($type->status == 1) {
-//            $url = sprintf('%s%s',$type->url,$page->id);
-
-//            } else {
-//                $url = $type->url;
-//            }
-        } else {
-            $url = $item->url;
+        $url = '';
+        if(!is_null($item))
+        {
+            if( $item->btn_type == 1 ) {
+                $page = $item->page;
+                $type = $page->type;
+                $url = sprintf('%s?mid=%s',$type->url,$item->id);
+            } else {
+                $url = $item->url;
+            }
         }
         return $url;
     }

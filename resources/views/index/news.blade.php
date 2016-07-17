@@ -12,7 +12,7 @@
 
 <section class="text-left">
     <div class="wrap sn-big-title color-blue">
-        公司新闻
+        {{ $menuInfo->name }}
     </div>
 </section>
 
