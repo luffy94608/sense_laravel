@@ -16,8 +16,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-        Blade::directive('relUrl', function($expression) {
+        //获取后台上传的图片文件真实url
+        Blade::directive('resourceHostUrl', function($expression) {
             $url = $expression;
             if(stripos($url,'http://')===false && stripos($url,'https://')===false && stripos($url,'ftp://')===false){
                 $host = \Config::get('app')['img_host'];
@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
             }
             return $url;
         });
+
     }
 
     /**
@@ -36,7 +37,10 @@ class AppServiceProvider extends ServiceProvider
     {
         //共用视图变量
         View::composer('layouts.header',function($view){
-            $menus = Menu::all();
+            $menus = Menu::where('module',0)->get();
+//            $menus = $menus->toArray();
+            $menu = new Menu();
+            $menus = $menu->getMenuTree($menus);
             $params = [
                 'menus'=>$menus
             ];
@@ -44,7 +48,9 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('layouts.footer',function($view){
-            $maps = Menu::all();
+            $maps = Menu::where('module',1)->get();
+            $menu = new Menu();
+            $maps = $menu->getMenuTree($maps);
             $params = [
                 'maps'=>$maps
             ];

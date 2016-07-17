@@ -10,4 +10,9 @@ class Page extends Model
     {
         return $this->hasMany('App\Models\PageContent');
     }
+
+    public function type()
+    {
+        return $this->hasOne('App\Models\PageType');
+    }
 }
