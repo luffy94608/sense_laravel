@@ -1,17 +1,14 @@
 @extends('layouts.default')
-{{--@section('title', '')--}}
-@section('content')
-        <!--<div class="sn-blue-bg"></div>-->
-<img width="100%" src="/images/sense.jpg">
-<!--page bar 所在位置-->
-<section class="sn-page-bar">
 
-    <div class="wrap text-left sn-pb-content">
-        <span>您现在的位置：</span>
-        <span>我们</span> <span>></span>
-        <span class="active">公司新闻</span>
-    </div>
-</section>
+@inject('funcTools', 'App\Tools\FuncTools')
+@section('title', $menuInfo->page->title)
+@section('keywords', $menuInfo->page->keywords)
+@section('description', $menuInfo->page->description)
+
+@section('content')
+
+{{--page bar 所在位置--}}
+@include('layouts.crumb',['menuInfo'=>$menuInfo])
 
 <section class="text-left">
     <div class="wrap sn-big-title color-blue">
@@ -25,7 +22,7 @@
 
             @foreach($news as $new)
                 <li>
-                    <a href="/news-detail/{{ $new->id }}" >
+                    <a href="/news-detail/{{ $new->id }}?mid={{ $menuInfo->id }}" >
                         <div class="sn-wrl-head circle">
                             <span class="sn-wlh-title"><i class="icon-circle"></i>{{ $new->title }}</span>
                             <span class="sn-wlh-time"></span>

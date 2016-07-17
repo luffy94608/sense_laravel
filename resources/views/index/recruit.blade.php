@@ -1,22 +1,18 @@
 @extends('layouts.default')
-{{--@section('title', '')--}}
+
+@inject('funcTools', 'App\Tools\FuncTools')
+@section('title', $menuInfo->page->title)
+@section('keywords', $menuInfo->page->keywords)
+@section('description', $menuInfo->page->description)
+
 @section('content')
-    <img width="100%" src="images/sense.jpg">
-
-    <!--page bar 所在位置-->
-    <section class="sn-page-bar">
-
-        <div class="wrap text-left sn-pb-content">
-            <span>您现在的位置：</span>
-            <span>我们</span> <span>></span>
-            <span class="active">诚聘精英</span>
-        </div>
-    </section>
+    {{--page bar 所在位置--}}
+    @include('layouts.crumb',['menuInfo'=>$menuInfo])
 
     <!--container list-->
     <section class="text-left">
         <div class="wrap sn-big-title color-blue">
-            诚聘精英
+            {{ $menuInfo->name }}
         </div>
     </section>
 
@@ -27,7 +23,7 @@
                     <li>
                         <div class="sn-wrl-head circle">
                             <span class="sn-wlh-title"><i class="icon-circle"></i>{{ $v->title }}</span>
-                            <span class="sn-wlh-time">发布日期：{{ $v->created_at }}</span>
+                            <span class="sn-wlh-time">发布日期：{{ $v->updated_at }}</span>
                             <i class="icon-double-angle-down arrow"></i>
                         </div>
                         <div class="sn-wrl-desc 1">

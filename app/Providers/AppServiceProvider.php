@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Menu;
+use App\Models\Page;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,7 +31,6 @@ class AppServiceProvider extends ServiceProvider
         //共用视图变量
         View::composer('layouts.header',function($view){
             $menus = Menu::where('module',0)->get();
-//            $menus = $menus->toArray();
             $menu = new Menu();
             $menus = $menu->getMenuTree($menus);
             $params = [
