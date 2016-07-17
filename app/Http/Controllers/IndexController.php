@@ -6,7 +6,10 @@ use App\Http\Requests;
 use App\Models\Banner;
 use App\Models\Cert;
 use App\Models\CompanyNew;
+use App\Models\Download;
 use App\Models\Enums\CommonEnum;
+use App\Models\Lock;
+use App\Models\LockType;
 use App\Models\Menu;
 use App\Models\Page;
 use App\Models\PageContent;
@@ -55,7 +58,78 @@ class IndexController extends Controller
 
 
 
+    /**
+     * 加密锁
+     * @return \Illuminate\Http\Response
+     */
+    public function getLocks()
+    {
+        $subs = Menu::where('parent_id',$this->menuInfo->id)
+            ->get();
 
+        $map = [];
+        if($subs)
+        {
+            foreach ($subs as $sub) {
+                $page = $sub->page;
+                $sid = $page->extra;
+                if(!empty($sid)){
+                    $map[$sid] = $sub;
+                }
+            }
+        }
+
+        $list = LockType::OrderBy('id','asc')->get();
+        if($list)
+        {
+            foreach ($list as &$v) {
+                if(array_key_exists($v->id,$map)){
+                    $v ->menu = $map[$v->id];
+                }
+            }
+        }
+        $params = [
+            'list'=>$list,
+            'menuInfo'=>$this->menuInfo,
+        ];
+        return View::make('index.locks',$params);
+    }
+
+    /**
+     * 加密锁详情
+     * @param $id
+     * @return mixed
+     */
+    public function getLockDetail($id = '')
+    {
+        if($id){
+            $detail = Lock::where('id',$id)->first();
+        }else{
+            $page = $this->menuInfo->page;
+            $detail = Lock::where('lock_type_id',$page->extra)->first();
+        }
+        $downloads = [];
+        if(!empty($detail->download_ids))
+        {
+            $ids = explode(',',$detail->download_ids);
+            $downloads = Download::whereIn('id',$ids)->get();
+        }
+        $detail->downloads = $downloads;
+
+        $type = $detail->type;
+        $locks = Lock::where('lock_type_id',$type->id)
+            ->get();
+
+        $locksMenu = Menu::find($this->menuInfo->parent_id);
+
+        $params = [
+            'detail'=>$detail,
+            'locks'=>$locks,
+            'locksMenu'=>$locksMenu,
+            'menuInfo'=>$this->menuInfo,
+        ];
+        return View::make('index.lock_detail',$params);
+    }
 
     /**
      * 解决方案列表

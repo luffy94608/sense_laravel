@@ -58,6 +58,16 @@ class FuncTools
         if($menu)
         {
             $parent = Menu::find($menu->parent_id);
+            if(!empty($parent) || $menu->parent_id == 0){
+                $tmpName = $menu->name;
+                return  "
+                   <span class='active'>
+                        {$tmpName}
+                    </span>   
+
+                ";
+            }
+
             $url = $this->menuUrl($parent);
 
             $tmpName = $parent->name;

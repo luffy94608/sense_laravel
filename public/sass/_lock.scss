@@ -254,10 +254,12 @@
           .ll-pl-item{
             width: 25%;
             margin-left: 25px;
+            margin-bottom: 10px;
             float:  left;
             border: $border-style;
             &>img{
               width: 80%;
+              height: 60px;
             }
             &>p{
               font-size: 14px;
