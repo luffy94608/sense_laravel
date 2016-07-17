@@ -1,60 +1,31 @@
+@inject('funcTools', 'App\Tools\FuncTools')
 <!--公共 site maps-->
 <div class="sn-site-map clear-fix">
     <div class="wrap text-left">
-        <ul class="sn-sm-item">
-            <li class="title js_location_url" data-url="platform">云授权平台</li>
-
-            <li><a class="info "   href="platform_intro.html">了解云授权平台</a></li>
-            <li><a class="info "   href="cloud_lock.html">云锁服务</a></li>
-            <li><a class="info "   href="ss_service.html">SS安全服务</a></li>
-            <li><a class="info " href="http://developer.senseshield.com/auth/register.jsp" target="_blank" >云帐号注册</a></li>
-        </ul>
-
-        <ul class="sn-sm-item">
-            <li class="title " >专业工具</li>
-            <li><a class="info "  href="vp_tools.html">Virbox Protector</a></li>
-            <li><a class="info "   href="auth_tools.html">开发商工具</a></li>
-            <li><a class="info "  href="user_tools.html">许可管理工具</a></li>
-        </ul>
-
-        <ul class="sn-sm-item">
-            <li class="title text-center " >
-                <a class="info "  href="locks.html">硬件加密锁</a>
-            </li>
-            <li><a class="info "  href="lock_jr5_std.html">精锐 5</a></li>
-            <li><a class="info "  href="lock_jr4s_std.html">精锐 4S</a></li>
-            <li><a class="info "  href="lock_lr1_std.html">灵锐 1</a></li>
-            <li><a class="info "  href="lock_jr5_std.html?tab=2">试用及购买</a></li>
-        </ul>
-
-        <ul class="sn-sm-item">
-            <li class="title"><a class="info"  href="solution.html" >解决方案</a></li>
-            <li><a class="info"  href="su_game.html"  >游戏行业</a></li>
-            <li><a class="info"  href="su_manage.html"  >管理行业</a></li>
-            <li><a class="info"  href="su_art.html"  >建筑行业</a></li>
-            <li><a class="info"  href="su_edu.html" >教育和文档</a></li>
-            <li><a class="info"  href="su_common.html" >通用行业</a></li>
-        </ul>
-
-        <ul class="sn-sm-item">
-            <li class="title js_location_url" data-url="support" >资源</li>
-            <li><a class="info js_location_url"  data-url="su_download" href="javascript:void(0); ">下载中心</a></li>
-            <li><a class="info js_location_url"  data-url="su_problem" href="javascript:void(0); ">常见问题</a></li>
-            <li><a class="info js_location_url"  data-url="su_feedback" href="javascript:void(0); ">建议反馈</a></li>
-            <li><a class="info js_location_url"  data-url="su_contact" href="javascript:void(0); ">联系我们</a></li>
-
-        </ul>
-
-        <ul class="sn-sm-item">
-            <li class="title  text-center"  >我们</li>
-            <li><a class="info"  href="company_intro.html"   >公司简介</a></li>
-            <li><a class="info" href="news.html"  >公司新闻</a></li>
-            <li><a class="info" href="we_route.html" >成长历程</a></li>
-            <li><a class="info" href="we_intellectual.html"  >知识产权</a></li>
-            <li><a class="info" href="we_property.html" >公司资质</a></li>
-            <li><a class="info" href="we_recurit.html"  >诚聘精英</a></li>
-        </ul>
-
+        @if( $maps )
+            @foreach( $maps as $map)
+                <ul class="sn-sm-item">
+                    <li class="title" >
+                        @if($funcTools->menuUrl($map))
+                            <a  href="{{ $funcTools->menuUrl($map) }}" target="{{ $map->target }}" >{{ $map->name }}</a>
+                        @else
+                            <a>{{ $map->name }}</a>
+                        @endif
+                    </li>
+                    @foreach( $map->children as $subMapItem)
+                        <li>
+                            @if($funcTools->menuUrl($subMapItem))
+                                <a class="info"  href="{{ $funcTools->menuUrl($subMapItem) }}" target="{{ $subMapItem->target }}" >{{ $subMapItem->name }}</a>
+                            @else
+                                <a class="info" >
+                                    {{ $subMapItem->name }}
+                                </a>
+                            @endif
+                        </li>
+                    @endforeach
+                </ul>
+            @endforeach
+        @endif
         <ul class="sn-sm-item">
             <li class="title js_location_url" data-url="index" >深思数盾</li>
             <li><a id="BizQQWPA2"  class="info"  href="javascript:void(0);"><img src="/images/icons/qq.png">QQ</a></li>

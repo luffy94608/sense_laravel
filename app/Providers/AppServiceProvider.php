@@ -16,15 +16,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //获取后台上传的图片文件真实url
-        Blade::directive('resourceHostUrl', function($expression) {
-            $url = $expression;
-            if(stripos($url,'http://')===false && stripos($url,'https://')===false && stripos($url,'ftp://')===false){
-                $host = \Config::get('app')['img_host'];
-                $url = $host.$url;
-            }
-            return $url;
-        });
 
     }
 

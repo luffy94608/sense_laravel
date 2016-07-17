@@ -1,3 +1,5 @@
+@inject('funcTools', 'App\Tools\FuncTools')
+
 @extends('layouts.default')
 {{--@section('title', '')--}}
 {{--@section('keywords', '')--}}
@@ -20,11 +22,7 @@
                             @endif
                         </div>
                     </div>
-                    @if(stripos($banner->img,'http://')===false && stripos($banner->img,'https://')===false && stripos($banner->img,'ftp://')===false)
-                        <img src="@resourceHostUrl{{ $banner->img }}">
-                    @else
-                        <img src="{{ $banner->img }}">
-                    @endif
+                    <img src="{{ $funcTools->resourceUrl($banner->img) }}">
                 </li>
             @endforeach
         </ul>
@@ -40,7 +38,7 @@
                 @foreach($list as $k=>$v)
                     <li class="{{ $k == 0  ? 'active' : ''}}">
                         <a href="#sn_phc_menu_{{ $v->id }}">
-                            <img src="@resourceHostUrl{{ $k == 0 ? $v->icon_active : $v->icon }}" data-icon="@resourceHostUrl{{ $v->icon }}" data-active="@resourceHostUrl{{ $v->icon_active }}">
+                            <img src="{{ $funcTools->resourceUrl($k == 0 ? $v->icon_active : $v->icon) }}" data-icon="{{ $funcTools->resourceUrl($v->icon) }}" data-active="{{ $funcTools->resourceUrl($v->icon_active) }}">
                             <p>{{ $v->title }}</p>
                         </a>
                     </li>
@@ -74,11 +72,7 @@
                     </div>
                 </div>
                 <div class="snphc-img fr">
-                    @if(stripos($v->pic,'http://')===false && stripos($v->pic,'https://')===false && stripos($v->pic,'ftp://')===false)
-                        <img src="@resourceHostUrl{{ $v->pic }}">
-                    @else
-                        <img src="{{ $v->pic }}">
-                    @endif
+                    <img src="{{ $funcTools->resourceUrl($v->pic) }}">
                 </div>
             </div>
         </section>
@@ -98,11 +92,7 @@
                         <li class="">
                             <div class="sn-partners-item">
                                 <a href="{{ $partner->url }}" target="_blank">
-                                @if(stripos($partner->logo,'http://')===false && stripos($partner->logo,'https://')===false && stripos($partner->logo,'ftp://')===false)
-                                    <img src="@resourceHostUrl{{ $partner->logo }}">
-                                @else
-                                    <img src="{{ $partner->img }}">
-                                @endif
+                                <img src="{{ $funcTools->resourceUrl($partner->logo) }}">
                                 </a>
                             </div>
                         </li>

@@ -24,7 +24,7 @@ class Menu extends Model
 
     public function page()
     {
-        return $this->hasOne('App\Models\Page');
+        return $this->belongsTo('App\Models\Page');
     }
 
     public function getMenuTree($data)

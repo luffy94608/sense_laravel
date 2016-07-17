@@ -1,3 +1,5 @@
+@inject('funcTools', 'App\Tools\FuncTools')
+
 <!--公共header-->
 <div class="bg-white  sn-header text-left">
     <div class="wrap clear-fix">
@@ -16,22 +18,32 @@
             @if( $menus )
                 @foreach($menus as $menu)
                     <div>
-                        <a href="@menuUrl({{ $menu }})" target="{{ $menu->target }}" >{{ $menu->name }}</a>
+                        @if($funcTools->menuUrl($menu))
+                            <a href="{{ $funcTools->menuUrl($menu) }}" target="{{ $menu->target }}" >{{ $menu->name }}</a>
+                        @else
+                            <a  >{{ $menu->name }}</a>
+                        @endif
                         {{-- 展开 menu  --}}
                         @if( $menu->show_type == 1 && !empty($menu->children) )
                         <div class="sub-menu-group ">
                             @foreach( $menu->children as $subMenu)
                                 <ul class="sub-menu-item clear-fix">
                                     <li class="disabled">
-                                        <a class="text-center color-blue" href="" target="{{ $subMenu->target }}" >
-                                            {{ $subMenu->name }}
-                                        </a>
+                                        @if($funcTools->menuUrl($subMenu))
+                                            <a class="text-center color-blue" href="{{ $funcTools->menuUrl($subMenu) }}" target="{{ $subMenu->target }}" >{{ $subMenu->name }}</a>
+                                        @else
+                                            <a class="text-center color-blue" >{{ $subMenu->name }}</a>
+                                        @endif
                                     </li>
                                     @foreach( $subMenu->children as $subItem)
                                         <li>
-                                            <a href="platform_intro.html" target="{{ $subItem->target }}" >
-                                                <div class="sub-mi-title">{{ $subItem->name }}</div>
-                                            </a>
+                                            @if($funcTools->menuUrl($subItem))
+                                                <a href="{{ $funcTools->menuUrl($subItem) }}" target="{{ $subItem->target }}" ><div class="sub-mi-title">{{ $subItem->name }}</div></a>
+                                            @else
+                                                <a>
+                                                    <div class="sub-mi-title">{{ $subItem->name }}</div>
+                                                </a>
+                                            @endif
                                         </li>
                                     @endforeach
                                 </ul>
@@ -43,15 +55,22 @@
                         <ul class="sub-menu">
                             @foreach( $menu->children as $subMenu)
                                 <li>
-                                    <a href="su_platform.html" target="{{ $subMenu->target }}"  >{{ $subMenu->name }}</a>
+                                    @if($funcTools->menuUrl($subMenu))
+                                        <a href="{{ $funcTools->menuUrl($subMenu) }}" target="{{ $subMenu->target }}" >{{ $subMenu->name }}</a>
+                                    @else
+                                        <a  >{{ $subMenu->name }}</a>
+                                    @endif
+
                                     @if( !empty($subMenu->children) )
                                     <i class="sn-arrow-right"></i>
                                     <ul class="sub-child-menu">
                                         @foreach( $subMenu->children as $subItem)
                                             <li>
-                                                <a href="platform_intro.html" target="{{ $subItem->target }}" >
-                                                    {{ $subItem->name }}
-                                                </a>
+                                                @if($funcTools->menuUrl($subItem))
+                                                    <a href="{{ $funcTools->menuUrl($subItem) }}" target="{{ $subItem->target }}" >{{ $subItem->name }}</a>
+                                                @else
+                                                    <a  >{{ $subItem->name }}</a>
+                                                @endif
                                             </li>
                                         @endforeach
                                     </ul>

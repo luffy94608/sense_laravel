@@ -13,6 +13,6 @@ class Page extends Model
 
     public function type()
     {
-        return $this->hasOne('App\Models\PageType');
+        return $this->belongsTo('App\Models\PageType','page_type_id');
     }
 }
