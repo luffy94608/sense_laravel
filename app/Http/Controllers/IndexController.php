@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Jobs\SendReminderEmail;
 use App\Models\Banner;
 use App\Models\Cert;
 use App\Models\Cloud;
@@ -437,5 +438,22 @@ class IndexController extends Controller
         return View::make('index.recruit',$params);
     }
 
+
+    public function getEmail()
+    {
+        $this->sendReminderEmail();
+    }
+
+    /**
+     * 发送提醒的 e-mail 给指定用户。
+     */
+    public function sendReminderEmail()
+    {
+        $data = ['email'=>'29620639@qq.com', 'name'=>'luffy'];
+        \Mail::send('emails.reminder', $data, function($message) use($data)
+        {
+            $message->to($data['email'], $data['name'])->subject('欢迎注册我们的网站，请激活您的账号！');
+        });
+    }
 
 }

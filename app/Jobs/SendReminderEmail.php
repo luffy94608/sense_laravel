@@ -24,9 +24,9 @@ class SendReminderEmail extends Job implements SelfHandling, ShouldQueue
      * SendReminderEmail constructor.
      * @param Order $order
      */
-    public function __construct(Order $order)
+    public function __construct()
     {
-        $this->order = $order;
+//        $this->order = $order;
     }
 
     /**
