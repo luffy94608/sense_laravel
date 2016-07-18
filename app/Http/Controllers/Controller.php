@@ -41,6 +41,26 @@ abstract class Controller extends BaseController
         return response()->json((new ApiResult(-1, $error_msg ?: '参数错误', ''))->toJson());
     }
 
+
+    /**
+     * 统计埋点
+     * @param $src
+     */
+    public function statPageLog($src)
+    {
+        $ip=$this->getRemoteIp();
+        $uid = Input::get('uid',$ip);
+        $msg = sprintf("<<< uid(#%s#) src(#%s#) ip(#%s#) >>>",$uid, $src, $ip);
+        $handle = new RotatingFileHandler(storage_path('logs/stat.log'));
+//        $stream =  new StreamHandler(storage_path('logs/stat.log'),Logger::DEBUG);
+//        $logger->pushHandler($stream);
+
+        $logger = new Logger('stat_logger');
+        $logger->pushHandler($handle);
+        $logger->info($msg);
+    }
+
+
     /**
      * 获取客户端ip
      * @return mixed

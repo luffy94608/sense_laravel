@@ -32,6 +32,10 @@ class IndexController extends Controller
     public function __construct()
     {
         $mid = Input::get('mid');
+        //统计买点
+        $this->statPageLog($mid ? $mid : 0);//首页和其他个个页面
+        $this->statPageLog('web');//总网站
+
         $menuInfo = '';
         if(!empty($mid)){
             $menuInfo = Menu::find($mid);
@@ -441,11 +445,6 @@ class IndexController extends Controller
         return View::make('index.recruit',$params);
     }
 
-
-    public function getEmail()
-    {
-        $this->sendReminderEmail();
-    }
 
     /**
      * 发送提醒的 e-mail 给指定用户。
