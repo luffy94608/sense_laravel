@@ -1,0 +1,1 @@
+!function(n){String.prototype.format=function(){var n=arguments;return this.replace(/{(\d+)}/g,function(t,r){return"undefined"!=typeof n[r]?n[r]:t})},n.string={version:"1.0.0",auth:"web",CONFIRM_PASSWORD_NOT_EQUAL:"两次密码不一致"}}(jQuery);
