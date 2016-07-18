@@ -7,5 +7,5 @@ Homestead.json
 .idea
 _ide_helper.php
 #public/release
-public/bower_components
+#public/bower_components
 *.log
