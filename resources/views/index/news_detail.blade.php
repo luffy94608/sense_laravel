@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @inject('funcTools', 'App\Tools\FuncTools')
-@section('title', $menuInfo->page->title)
+@section('title', $news->title )
 @section('keywords', $menuInfo->page->keywords)
 @section('description', $menuInfo->page->description)
 
@@ -30,9 +30,12 @@
     <section class="sn-we-news text-left js_news_list">
         <div class="wrap clear-fix ">
             <p class="sn-wen-title">{{ $news->title }}</p>
-            <p class="sn-wen-content">
-                {{ $news->content }}
-            </p>
+            {{--<p class="sn-wen-content">--}}
+                {{--{!!  $news->content  !!}--}}
+            {{--</p>--}}
+            <div class="">
+                {!!  $news->content  !!}
+            </div>
         </div>
     </section>
 @stop

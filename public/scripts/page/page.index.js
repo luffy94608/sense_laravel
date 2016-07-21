@@ -3,8 +3,14 @@
  *  当页面ready的时候，执行回调:
  */
 $(document).ready(function () {
+
+    window.onresize = function(){
+        $('.sn_bxslider>li').css({'width':'100%','minWidth':'1024px'});
+    };
     $('.sn_bxslider').bxSlider({
         auto: true,
+        responsive: true,
+        adaptiveHeight: true,
         mode: 'fade'
     });
     $('.sn_partners_slide').bxSlider({
