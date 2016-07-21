@@ -33,7 +33,7 @@
             {{--<p class="sn-wen-content">--}}
                 {{--{!!  $news->content  !!}--}}
             {{--</p>--}}
-            <div class="" style="line-height: 1.6;word-wrap: break-word;">
+            <div class="" style="line-height: 2;word-wrap: break-word;">
                 {!!  $news->content  !!}
             </div>
         </div>
