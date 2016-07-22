@@ -3,16 +3,11 @@
 namespace App\Exceptions;
 
 use App\Models\ApiResult;
-use App\Models\ErrorEnum;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Exceptions\TokenBlacklistedException;
-use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 
 class Handler extends ExceptionHandler
 {
@@ -48,18 +43,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if ($e instanceof ModelNotFoundException) {
-            $e = new NotFoundHttpException($e->getMessage(), $e);
-        } elseif ($e instanceof UnauthorizedHttpException) {
-            return response()->json((new ApiResult(ErrorEnum::InvalidToken, ErrorEnum::transform(ErrorEnum::InvalidToken), ''))->toJson());
-        } elseif ($e instanceof TokenExpiredException) {
-            return response()->json((new ApiResult(ErrorEnum::TokenExpired, ErrorEnum::transform(ErrorEnum::TokenExpired), ''))->toJson());
-        } elseif ($e instanceof TokenBlacklistedException) {
-            return response()->json((new ApiResult(ErrorEnum::InvalidToken, ErrorEnum::transform(ErrorEnum::InvalidToken), ''))->toJson());
-        } elseif ($e instanceof JWTException) {
-            return response()->json((new ApiResult(ErrorEnum::InvalidToken, ErrorEnum::transform(ErrorEnum::InvalidToken), ''))->toJson());
+        if ($this->isHttpException($e))
+        {
+            return response()->view('errors.404');
         }
-
-        return parent::render($request, $e);
+        else
+        {
+            return parent::render($request, $e);
+        }
     }
 }
