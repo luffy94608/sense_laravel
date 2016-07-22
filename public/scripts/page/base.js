@@ -216,7 +216,7 @@ $(document).ready(function () {
                     //提交数据的类型 POST GET
                     type:"POST",
                     //提交的网址
-                    url:"apply",
+                    url:"/apply",
                     //提交的数据
                     data:params,
                     //返回数据的格式
