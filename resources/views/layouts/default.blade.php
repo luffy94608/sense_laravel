@@ -18,7 +18,7 @@
         document.global_config_data = {
             version: '{{Config::get('app')['version']}}',
             page:'{{isset($page) ? $page : 'base'}}',
-            resource_root: '{{Config::get('app')['url']}}',
+            resource_root: '{{Config::get('app')['url']}}'
         };
 
     </script>

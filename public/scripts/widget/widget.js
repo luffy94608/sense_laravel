@@ -45,7 +45,7 @@
         var st = {
             toastID:'toast-new',
             dur:2000
-        }
+        };
         if( typeof str !== 'string' ){
             throw 'Invalid param of $.showToast';
             return;
@@ -65,12 +65,12 @@
         var $box = $toast.find('.toast-box');
         var init = function(){
             $box.empty().append('<p>');
-        }
+        };
         var setPosition = function(){
             var h = $(window).height();
             var top = h/2 - 30;
             $toast.css('top',top+'px');
-        }
+        };
         var toastFlash = function(time){
             $toast.show(300);
             setTimeout(function(){
@@ -79,7 +79,7 @@
                     setTimeout(callback,300);
                 }
             },time)
-        }
+        };
         var checkSpecialStatus = function(){
             if( typeof YesOrNo == 'boolean' ){
                 if( YesOrNo ){
@@ -88,7 +88,7 @@
                     $box.find('p').addClass('nay');
                 }
             }
-        }
+        };
 
         init();
         checkSpecialStatus();

@@ -16,7 +16,7 @@
             'string': 'widget/string',
             'base': 'page/base',
             'index': 'page/page.index',
-            'page-news-detail': 'page/page.news.detail',
+            'page-news-detail': 'page/page.news.detail'
         },
         // Use shim for plugins that does not support ADM
         shim: {
@@ -25,7 +25,7 @@
             'bxslider-4': ['jquery'],
             'base': ['jquery'],
             'index': ['base','bxslider-4'],
-            'page-news-detail': ['base'],
+            'page-news-detail': ['base']
         }
 
     });

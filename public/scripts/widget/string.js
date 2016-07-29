@@ -12,7 +12,7 @@
             auth: "web",
 
             // === common ===
-            CONFIRM_PASSWORD_NOT_EQUAL : '两次密码不一致',
+            CONFIRM_PASSWORD_NOT_EQUAL : '两次密码不一致'
 
 
     };
