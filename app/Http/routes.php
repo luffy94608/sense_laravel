@@ -23,3 +23,17 @@
  */
 Route::controller('/','IndexController');
 
+/**
+ * 微信相关
+ */
+
+Route::any('/wechat', 'WechatController@serve');
+
+//...
+Route::group(['middleware' => ['wechat.oauth']], function () {
+    Route::get('/user', function () {
+        $user = session('wechat.oauth_user'); // 拿到授权用户资料
+        dd($user);
+    });
+});
+

@@ -174,6 +174,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class, // Laravel IDE helper
         Illuminate\Html\HtmlServiceProvider::class,
         Ixudra\Curl\CurlServiceProvider::class,
+        Overtrue\LaravelWechat\ServiceProvider::class
     ],
 
     /*
@@ -225,6 +226,7 @@ return [
         'Fractal'   => Spatie\Fractal\FractalFacade::class,
         'Form'      => Illuminate\Html\FormFacade::class,
         'Curl'      => Ixudra\Curl\Facades\Curl::class,
+        'Wechat' => Overtrue\LaravelWechat\Facade::class,
 
     ],
 
