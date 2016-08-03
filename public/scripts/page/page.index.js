@@ -11,7 +11,10 @@ $(document).ready(function () {
         auto: true,
         responsive: true,
         adaptiveHeight: true,
-        mode: 'fade'
+        mode: 'fade',
+        onSliderLoad:function () {
+            $('.sn-swiper-item').css('display','block');
+        }
     });
     $('.sn_partners_slide').bxSlider({
         infiniteLoop: false,

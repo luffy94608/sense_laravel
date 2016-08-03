@@ -12,8 +12,8 @@
         <ul class="sn_bxslider">
 
             @foreach( $banners as $banner)
-                <li>
-                    <div class="sn-swiper-item">
+                <li class="sn-swiper-item-sec" style="display: none;">
+                    <div class="sn-swiper-item" style="display: none">
                         <div class="wrap text-left">
                             <p>{{ $banner->title }}</p>
                             <p>{{ $banner->sub_title }}</p>
@@ -22,7 +22,7 @@
                             @endif
                         </div>
                     </div>
-                    <img src="{{ $funcTools->resourceUrl($banner->img) }}">
+                    <img onload="this.parentNode.style.display='block';" src="{{ $funcTools->resourceUrl($banner->img) }}">
                 </li>
             @endforeach
         </ul>
