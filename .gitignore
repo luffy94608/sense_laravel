@@ -9,3 +9,4 @@ _ide_helper.php
 #public/release
 #public/bower_components
 *.log
+.sass-cache
