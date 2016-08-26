@@ -11,10 +11,13 @@ $(document).ready(function () {
         auto: true,
         responsive: true,
         adaptiveHeight: true,
-        mode: 'fade',
-        onSliderLoad:function () {
-            $('.sn-swiper-item').css('display','block');
-        }
+        onSliderLoad:function (currentIndex) {
+            var tmpObj = $('.sn-swiper-item');
+            if(tmpObj.css('visibility') == 'hidden'){
+                tmpObj.css('visibility','visible');
+            }
+        },
+        mode: 'fade'
     });
     $('.sn_partners_slide').bxSlider({
         infiniteLoop: false,
@@ -25,6 +28,7 @@ $(document).ready(function () {
         slideMargin: 10
     });
 
+    $('.sn-slide-section').css('height','auto');
     /**
      * 初始化首页列表切换动画
      */

@@ -8,12 +8,12 @@
 
 <!--轮播图-->
 @if( $banners )
-    <div class="sn-slide-section">
+    <div class="sn-slide-section" style="height: 450px;overflow: hidden;">
         <ul class="sn_bxslider">
 
             @foreach( $banners as $banner)
-                <li class="sn-swiper-item-sec" style="display: none;">
-                    <div class="sn-swiper-item" style="display: none">
+                <li>
+                    <div class="sn-swiper-item" style="visibility: hidden">
                         <div class="wrap text-left">
                             <p>{{ $banner->title }}</p>
                             <p>{{ $banner->sub_title }}</p>
@@ -22,7 +22,7 @@
                             @endif
                         </div>
                     </div>
-                    <img onload="this.parentNode.style.display='block';" src="{{ $funcTools->resourceUrl($banner->img) }}">
+                    <img  src="{{ $funcTools->resourceUrl($banner->img) }}" width="100%">
                 </li>
             @endforeach
         </ul>
