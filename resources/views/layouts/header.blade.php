@@ -88,6 +88,7 @@
             <div class="bg-slide" ></div>
         </div>
         <div class="action fr">
+            <a class="sn-login " style="background: white;color: #1380c2;border: 2px solid #1380c2;padding: 4px 18px;position: relative;right: -5px;" target="_blank" href="http://www.sensestore.com.cn/">深思商城</a>
             <a class="sn-login " target="_blank" href="http://developer.senseshield.com/auth/">云帐号登录</a>
         </div>
     </div>
