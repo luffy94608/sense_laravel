@@ -53,6 +53,12 @@
             <li class="">
                 <a data-id="#tab_4" href="javascript:void (0);" >SDK下载</a>
             </li>
+
+            @if($detail->shop_url)
+                <li class="">
+                    <a target="_blank"  href="{{ $detail->shop_url }}" >进入商城</a>
+                </li>
+            @endif
         </ul>
     </div>
 </section>
