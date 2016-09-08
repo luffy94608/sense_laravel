@@ -25,7 +25,10 @@ $(document).ready(function () {
         slideWidth: 180,
         minSlides: 1,
         maxSlides: 5,
-        slideMargin: 10
+        slideMargin: 10,
+        onSliderLoad:function (currentIndex) {
+            $('.sn-partners').css({'visibility':'visible','height':'auto'});
+        }
     });
 
     $('.sn-slide-section').css('height','auto');

@@ -157,6 +157,7 @@ $(document).ready(function () {
             };
             $('.sn-phc-item .snphc-desc').height(height);
             $('.sn-phc-item .snphc-desc .sn-phcd-center').css(style);
+            $('.loading-section').addClass('active');
         },
 
         /**

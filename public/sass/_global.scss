@@ -166,6 +166,34 @@
   margin-left: 20px!important;
 }
 
+.loading-section{
+  position: relative;
+  overflow: hidden;
+  height: 400px;
+  .loading{
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: white;
+    background-image: url("../images/loading.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  &.active{
+    height: auto;
+    .loading{
+      display: none;;
+    }
+  }
+}
+
+.visible-hidden{
+  visibility: hidden;
+}
+
 @mixin center($width: null, $height: null) {
   position: absolute;
   top: 50%;
