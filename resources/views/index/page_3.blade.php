@@ -16,6 +16,8 @@
     </div>
 </section>
 
+<div class="sn_body_section loading-section" >
+    <div class="loading"></div>
 @foreach($menuInfo->page->contents as $k=>$content)
 
     <section  class="sn-phc-item {{ $k == count($menuInfo->page->contents)-1 ? '' :'border-bottom-grey' }} ">
@@ -42,5 +44,5 @@
 
 
 @endforeach
-
+<div>
 @stop

@@ -50,39 +50,43 @@
 
 
 @if( $list )
+    <div class="sn_body_section loading-section" >
+    <div class="loading"></div>
     @foreach($list as $k => $v)
-        <section  class="sn-phc-item border-bottom-grey">
+            <section  class="sn-phc-item border-bottom-grey" >
 
-            <div id="sn_phc_menu_{{ $v->id }}" class="wrap clear-fix text-left sn_phc_menu">
-                <div class="snphc-desc {{ $v->position == 1 ? 'fr' : 'fl' }}">
-                    <div class="sn-phcd-center">
+                <div id="sn_phc_menu_{{ $v->id }}" class="wrap clear-fix text-left sn_phc_menu">
+                    <div class="snphc-desc {{ $v->position == 1 ? 'fr' : 'fl' }}">
+                        <div class="sn-phcd-center">
 
-                        <div class="snphc-tag">{{ $v->title }}</div>
-                        <div class="snphc-title">{{ $v->sub_title }}</div>
-                        <div class="snphc-abstract pre-line">
-                            {{ $v->content }}
-                        </div>
-                        <div class="snphc-link">
-                            @if($v->links)
-                                @foreach( $v->links  as $link)
-                                    <a class="color-orange " href="{{ $link->url }}" target="{{ $link->target }}">{{$link->name}}</a><br>
-                                @endforeach
-                            @endif
+                            <div class="snphc-tag">{{ $v->title }}</div>
+                            <div class="snphc-title">{{ $v->sub_title }}</div>
+                            <div class="snphc-abstract pre-line">
+                                {{ $v->content }}
+                            </div>
+                            <div class="snphc-link">
+                                @if($v->links)
+                                    @foreach( $v->links  as $link)
+                                        <a class="color-orange " href="{{ $link->url }}" target="{{ $link->target }}">{{$link->name}}</a><br>
+                                    @endforeach
+                                @endif
+                            </div>
                         </div>
                     </div>
+                    <div class="snphc-img {{ $v->position == 1 ? 'fl' : 'fr' }}">
+                        <img src="{{ $funcTools->resourceUrl($v->pic) }}">
+                    </div>
                 </div>
-                <div class="snphc-img {{ $v->position == 1 ? 'fl' : 'fr' }}">
-                    <img src="{{ $funcTools->resourceUrl($v->pic) }}">
-                </div>
-            </div>
-        </section>
+            </section>
     @endforeach
-@endif
+    </div>
+
+    @endif
 
 
 <!--合作伙伴-->
 @if( $banners )
-    <section class="sn-partners">
+    <section class="sn-partners" style="visibility: hidden;height: 0;overflow: hidden;">
         <div class="wrap clear-fix">
             <p class="sm-p-title">我们的合作伙伴</p>
             <div class="sn-partners-slide">
