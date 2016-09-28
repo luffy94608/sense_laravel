@@ -135,7 +135,7 @@ class IndexController extends Controller
         {
             foreach ($subs as $sub) {
                 $page = $sub->page;
-                $sid = $page->extra;
+                $sid = $page ? $page->extra : '';
                 if(!empty($sid)){
                     $map[$sid] = $sub;
                 }
