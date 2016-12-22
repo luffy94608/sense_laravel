@@ -24,8 +24,7 @@
             <div class="sn-cls-item">
                 <p class="sn-cls-title">{{ $content->title }}</p>
                 <p class="sn-cls-sub-title">{{ $content->sub_title }}</p>
-                <p class="sn-cls-desc">
-                    {{ $content->content }}
+                <p class="sn-cls-desc">{{ $content->content }}
                 </p>
                 @foreach($content->links as $link)
                     <br>

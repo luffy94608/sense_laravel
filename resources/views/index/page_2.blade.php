@@ -23,8 +23,7 @@
             <div class="sn-pt-item">
                 <p class="sn-pti-title">{{ $content->title }}</p>
                 <p class="sn-pti-sub-title">{{ $content->sub_title }}</p>
-                <p class="sn-pti-desc pre-line">
-                    {{ $content->content }}
+                <p class="sn-pti-desc pre-line">{{ $content->content }}
                 </p>
                 @foreach($content->links as $link)
                     <br>
